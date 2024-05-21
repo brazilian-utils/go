@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/agaragon/brutils-go/helpers"
 )
 
 var blacklist = []string{
