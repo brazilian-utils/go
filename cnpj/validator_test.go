@@ -3,7 +3,7 @@ package cnpj_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/cnpj"
+	"github.com/agaragon/brutils-go/cnpj"
 )
 
 var tables = []struct {

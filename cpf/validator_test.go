@@ -3,7 +3,7 @@ package cpf_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/cpf"
+	"github.com/agaragon/brutils-go/cpf"
 )
 
 var tables = []struct {
