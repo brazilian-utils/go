@@ -5,7 +5,7 @@
 ## Installation
 
 ```shell
-go get -u -v github.com/brazilian-utils/brutils-go
+go get -u -v github.com/agaragon/brutils-go
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ go get -u -v github.com/brazilian-utils/brutils-go
 ```golang
 package main
 
-import "github.com/brazilian-utils/brutils-go/cpf" // CPF package
+import "github.com/agaragon/brutils-go/cpf" // CPF package
 
 func main() {
     if cpf.IsValid("40364478829") {
