@@ -10,3 +10,14 @@ func Contains(h []string, n string) bool {
 
 	return false
 }
+
+// ContainsInt verifies if a slice of int contains the given int
+func ContainsInt(sl []int, v int) bool {
+	for _, vv := range sl {
+		if vv == v {
+			return true
+		}
+	}
+
+	return false
+}
