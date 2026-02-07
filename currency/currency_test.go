@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/currency"
+	"github.com/brazilian-utils/go/currency"
 )
 
 var formatTests = []struct {

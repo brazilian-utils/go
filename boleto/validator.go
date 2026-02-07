@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 // Every Digitable Line from Boleto has exactly 47 characters

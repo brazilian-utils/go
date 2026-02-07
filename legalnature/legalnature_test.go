@@ -3,7 +3,7 @@ package legalnature_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/legalnature"
+	"github.com/brazilian-utils/go/legalnature"
 )
 
 var isValidTests = []struct {

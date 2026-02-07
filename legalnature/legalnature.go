@@ -1,6 +1,6 @@
 package legalnature
 
-import "github.com/brazilian-utils/brutils-go/helpers"
+import "github.com/brazilian-utils/go/helpers"
 
 // legalNatureTable maps official 4-digit codes to their descriptions,
 // sourced from the Tabela de Natureza Jurídica (RFB).

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 var dateRegex = regexp.MustCompile(`^\d{2}/\d{2}/\d{4}$`)

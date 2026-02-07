@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 // Address represents the address data returned by the ViaCEP API.

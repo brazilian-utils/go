@@ -3,7 +3,7 @@ package boleto_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/boleto"
+	"github.com/brazilian-utils/go/boleto"
 )
 
 var tables = []struct {

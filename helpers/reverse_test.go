@@ -3,7 +3,7 @@ package helpers_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 var reverseTestValues = []struct {

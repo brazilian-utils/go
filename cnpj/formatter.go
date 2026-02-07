@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 // Positions where formatting symbols are inserted: XX.XXX.XXX/XXXX-XX

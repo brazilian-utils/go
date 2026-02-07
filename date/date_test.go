@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/brazilian-utils/brutils-go/date"
+	"github.com/brazilian-utils/go/date"
 )
 
 // ConvertDateToText tests

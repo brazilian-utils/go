@@ -3,7 +3,7 @@ package email_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/email"
+	"github.com/brazilian-utils/go/email"
 )
 
 var tables = []struct {

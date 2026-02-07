@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/brazilian-utils/brutils-go/legalprocess"
+	"github.com/brazilian-utils/go/legalprocess"
 )
 
 var isValidTests = []struct {

@@ -3,7 +3,7 @@ package cnpj_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/cnpj"
+	"github.com/brazilian-utils/go/cnpj"
 )
 
 func TestGenerate(t *testing.T) {

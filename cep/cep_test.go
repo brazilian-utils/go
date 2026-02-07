@@ -3,7 +3,7 @@ package cep_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/cep"
+	"github.com/brazilian-utils/go/cep"
 )
 
 var isValidTests = []struct {

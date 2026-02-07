@@ -3,7 +3,7 @@ package cnh_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/cnh"
+	"github.com/brazilian-utils/go/cnh"
 )
 
 var tables = []struct {

@@ -3,7 +3,7 @@ package renavam_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/renavam"
+	"github.com/brazilian-utils/go/renavam"
 )
 
 var tables = []struct {

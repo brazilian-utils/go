@@ -3,7 +3,7 @@ package helpers_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 var sliceOfString []string = []string{"foo", "bar"}

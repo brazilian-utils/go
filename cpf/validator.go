@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 // Valid CPFs but blacklisted they are reserved

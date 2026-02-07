@@ -3,7 +3,7 @@ package phone_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/phone"
+	"github.com/brazilian-utils/go/phone"
 )
 
 var isValidTests = []struct {

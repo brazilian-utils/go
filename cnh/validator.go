@@ -3,7 +3,7 @@ package cnh
 import (
 	"strconv"
 
-	"github.com/brazilian-utils/brutils-go/helpers"
+	"github.com/brazilian-utils/go/helpers"
 )
 
 // Every CNH has exactly 11 digits

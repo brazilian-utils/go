@@ -3,7 +3,7 @@ package licenseplate_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/licenseplate"
+	"github.com/brazilian-utils/go/licenseplate"
 )
 
 var isValidTests = []struct {

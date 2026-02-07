@@ -3,7 +3,7 @@ package pis_test
 import (
 	"testing"
 
-	"github.com/brazilian-utils/brutils-go/pis"
+	"github.com/brazilian-utils/go/pis"
 )
 
 var isValidTests = []struct {
