@@ -36,6 +36,7 @@ A biblioteca está organizada em pacotes especializados, cada um lidando com um 
 - **[Date](#date-1)** - Utilitários de Data Brasileira
 - **[Legal Nature](#legal-nature-1)** - Natureza Jurídica
 - **[Legal Process](#legal-process-1)** - Números de Processos Judiciais
+- **[Voter ID](#voter-id-1)** - Título de Eleitor
 
 ---
 
@@ -326,6 +327,37 @@ legalprocess.Generate(2024, 1)  // "1234567082024123456" (aleatório, ano 2024, 
 
 ---
 
+### Voter ID
+
+Título de Eleitor (Voter ID) é o número de identificação do eleitor brasileiro.
+
+```go
+import "github.com/brazilian-utils/go/voterid"
+
+// Validar Título de Eleitor
+voterid.IsValid("217633460930")  // true
+voterid.IsValid("6908 4709 28 28")  // true (com espaços)
+voterid.IsValid("123456789011")  // false (dígitos verificadores inválidos)
+
+// Formatar Título de Eleitor
+voterid.Format("217633460930")  // "2176 3346 09 30"
+voterid.Format("3244567800167")  // "3244 5678 00 16" (13 dígitos para SP/MG)
+
+// Gerar Título de Eleitor válido aleatório
+voterid.Generate()       // "217633460930" (aleatório, padrão ZZ - estrangeiro)
+voterid.Generate("SP")   // "149426030183" (São Paulo)
+voterid.Generate("MG")   // "033568860230" (Minas Gerais)
+voterid.Generate("RJ")   // "858224120973" (Rio de Janeiro)
+```
+
+**Observações:**
+- Títulos de eleitor têm normalmente 12 dígitos
+- Casos especiais: SP (01) e MG (02) podem ter 13 dígitos
+- Códigos de UF válidos: 01-28
+- Dois dígitos verificadores calculados usando módulo 11
+
+---
+
 ### 🤝 Contribuindo
 
 Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
@@ -366,6 +398,7 @@ The library is organized into specialized packages, each handling a specific Bra
 - **[Date](#date)** - Brazilian Date Utilities
 - **[Legal Nature](#legal-nature)** - Legal Entity Nature
 - **[Legal Process](#legal-process)** - Legal Process Numbers
+- **[Voter ID](#voter-id)** - Voter Registration ID
 
 ---
 
@@ -653,6 +686,37 @@ legalprocess.Format("12345670820231234567")  // "1234567-08.2023.1.23.4567"
 // Generate random legal process
 legalprocess.Generate(2024, 1)  // "1234567082024123456" (random, year 2024, orgao 1)
 ```
+
+---
+
+### Voter ID
+
+Voter ID (Título de Eleitor) is the Brazilian voter registration identification number.
+
+```go
+import "github.com/brazilian-utils/go/voterid"
+
+// Validate Voter ID
+voterid.IsValid("217633460930")  // true
+voterid.IsValid("6908 4709 28 28")  // true (with spaces)
+voterid.IsValid("123456789011")  // false (invalid check digits)
+
+// Format Voter ID
+voterid.Format("217633460930")  // "2176 3346 09 30"
+voterid.Format("3244567800167")  // "3244 5678 00 16" (13 digits for SP/MG)
+
+// Generate random valid Voter ID
+voterid.Generate()       // "217633460930" (random, default ZZ - foreigner)
+voterid.Generate("SP")   // "149426030183" (São Paulo)
+voterid.Generate("MG")   // "033568860230" (Minas Gerais)
+voterid.Generate("RJ")   // "858224120973" (Rio de Janeiro)
+```
+
+**Notes:**
+- Voter IDs are typically 12 digits long
+- Special cases: SP (01) and MG (02) can have 13 digits
+- Valid UF codes: 01-28
+- Two check digits calculated using modulo 11
 
 ---
 
