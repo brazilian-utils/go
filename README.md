@@ -3,337 +3,7 @@
 [![CircleCI](https://circleci.com/gh/brazilian-utils/brutils-go/tree/master.svg?style=svg)](https://circleci.com/gh/brazilian-utils/brutils-go/tree/master)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/brazilian-utils/brutils-go)](go.mod)
 
-[🇺🇸 English](#english) | [🇧🇷 Português](#português)
-
----
-
-## English
-
-### 📖 About
-
-**Brazilian Utils for Go** is a comprehensive library that provides utilities for working with Brazilian-specific data formats and documents. It includes validators, formatters, and generators for various Brazilian documents and data types.
-
-### 🚀 Installation
-
-```shell
-go get -u github.com/brazilian-utils/brutils-go
-```
-
-### 📦 Packages
-
-The library is organized into specialized packages, each handling a specific Brazilian data type:
-
-- **[CPF](#cpf)** - Individual Taxpayer Registry
-- **[CNPJ](#cnpj)** - National Registry of Legal Entities
-- **[CEP](#cep)** - Postal Code
-- **[Phone](#phone)** - Brazilian Phone Numbers
-- **[Currency](#currency)** - Brazilian Real (R$)
-- **[Boleto](#boleto)** - Payment Slip
-- **[Email](#email)** - Email Address
-- **[PIS](#pis)** - Social Integration Program
-- **[CNH](#cnh)** - National Driver's License
-- **[RENAVAM](#renavam)** - National Vehicle Registry
-- **[License Plate](#license-plate)** - Vehicle License Plates
-- **[Date](#date)** - Brazilian Date Utilities
-- **[Legal Nature](#legal-nature)** - Legal Entity Nature
-- **[Legal Process](#legal-process)** - Legal Process Numbers
-
----
-
-### CPF
-
-CPF (Cadastro de Pessoas Físicas) is the Brazilian individual taxpayer identification number.
-
-```go
-import "github.com/brazilian-utils/brutils-go/cpf"
-
-// Validate CPF
-cpf.IsValid("40364478829")  // true
-cpf.IsValid("403.644.788-29")  // true
-cpf.IsValid("00000000000")  // false (blacklisted)
-
-// Format CPF
-cpf.Format("40364478829")  // "403.644.788-29"
-cpf.Format("403644788")  // "403.644.788" (incomplete)
-
-// Generate random valid CPF
-cpf.Generate()  // "12345678909" (random)
-```
-
----
-
-### CNPJ
-
-CNPJ (Cadastro Nacional da Pessoa Jurídica) is the Brazilian company identification number.
-
-```go
-import "github.com/brazilian-utils/brutils-go/cnpj"
-
-// Validate CNPJ
-cnpj.IsValid("11222333000181")  // true
-cnpj.IsValid("11.222.333/0001-81")  // true
-cnpj.IsValid("00000000000000")  // false (blacklisted)
-
-// Format CNPJ
-cnpj.Format("11222333000181")  // "11.222.333/0001-81"
-
-// Generate random valid CNPJ
-cnpj.Generate()  // "12345678000190" (random)
-```
-
----
-
-### CEP
-
-CEP (Código de Endereçamento Postal) is the Brazilian postal code.
-
-```go
-import "github.com/brazilian-utils/brutils-go/cep"
-
-// Validate CEP
-cep.IsValid("01310100")  // true
-cep.IsValid("01310-100")  // false (must be digits only)
-
-// Format CEP
-cep.Format("01310100")  // "01310-100"
-cep.Format("0131010")  // "" (invalid, returns empty)
-
-// Generate random CEP
-cep.Generate()  // "12345678" (random)
-
-// Fetch address from CEP (uses ViaCEP API)
-addr, err := cep.GetAddressFromCEP("01310100")
-if err == nil {
-    fmt.Println(addr.Logradouro)  // "Avenida Paulista"
-    fmt.Println(addr.Bairro)      // "Bela Vista"
-    fmt.Println(addr.Localidade)  // "São Paulo"
-    fmt.Println(addr.UF)          // "SP"
-}
-
-// Search CEP from address
-ceps, err := cep.GetCEPFromAddress("SP", "São Paulo", "Paulista")
-if err == nil {
-    for _, c := range ceps {
-        fmt.Println(c.CEP, c.Logradouro)
-    }
-}
-```
-
----
-
-### Phone
-
-Utilities for Brazilian phone numbers (mobile and landline).
-
-```go
-import "github.com/brazilian-utils/brutils-go/phone"
-
-// Validate phone numbers
-phone.IsValid("11987654321", "mobile")    // true
-phone.IsValid("1133334444", "landline")   // true
-phone.IsValid("11987654321", "")          // true (any type)
-
-// Format phone numbers
-phone.Format("11987654321")  // "(11)98765-4321"
-phone.Format("1133334444")   // "(11)3333-4444"
-
-// Remove symbols
-phone.RemoveSymbols("(11) 98765-4321")  // "11987654321"
-
-// Remove international code
-phone.RemoveInternationalDialingCode("5511987654321")  // "11987654321"
-
-// Generate random phone
-phone.Generate("mobile")    // "11987654321" (random mobile)
-phone.Generate("landline")  // "1133334444" (random landline)
-phone.Generate("")          // random mobile or landline
-```
-
----
-
-### Currency
-
-Format and convert Brazilian Real (R$) values.
-
-```go
-import "github.com/brazilian-utils/brutils-go/currency"
-
-// Format currency
-currency.FormatCurrency(1234.56)  // "R$ 1.234,56"
-currency.FormatCurrency(1000000.00)  // "R$ 1.000.000,00"
-
-// Convert to text (Portuguese)
-currency.ConvertRealToText(1234.56)  // "Mil duzentos e trinta e quatro reais e cinquenta e seis centavos"
-currency.ConvertRealToText(1.00)     // "Um real"
-currency.ConvertRealToText(0.50)     // "Cinquenta centavos"
-currency.ConvertRealToText(-100.00)  // "Menos cem reais"
-```
-
----
-
-### Boleto
-
-Validate Brazilian bank payment slips (boletos).
-
-```go
-import "github.com/brazilian-utils/brutils-go/boleto"
-
-// Validate boleto digitable line (47 digits)
-boleto.IsValid("34191790010104351004791020150008291070026000")  // true/false
-```
-
----
-
-### Email
-
-Email address validation.
-
-```go
-import "github.com/brazilian-utils/brutils-go/email"
-
-// Validate email
-email.IsValid("user@example.com")  // true
-email.IsValid("invalid.email")     // false
-email.IsValid(".user@example.com") // false (starts with dot)
-```
-
----
-
-### PIS
-
-PIS (Programa de Integração Social) is a Brazilian social integration program number.
-
-```go
-import "github.com/brazilian-utils/brutils-go/pis"
-
-// Validate PIS
-pis.IsValid("12345678901")  // true/false
-
-// Format PIS
-pis.Format("12345678901")  // "123.45678.90-1"
-
-// Generate random valid PIS
-pis.Generate()  // "12345678901" (random)
-```
-
----
-
-### CNH
-
-CNH (Carteira Nacional de Habilitação) is the Brazilian national driver's license.
-
-```go
-import "github.com/brazilian-utils/brutils-go/cnh"
-
-// Validate CNH (11 digits)
-cnh.IsValid("12345678901")  // true/false
-cnh.IsValid("00000000000")  // false (blacklisted)
-```
-
----
-
-### RENAVAM
-
-RENAVAM is the Brazilian national vehicle registration number.
-
-```go
-import "github.com/brazilian-utils/brutils-go/renavam"
-
-// Validate RENAVAM (11 digits)
-renavam.IsValid("12345678901")  // true/false
-renavam.IsValid("11111111111")  // false (all same digit)
-```
-
----
-
-### License Plate
-
-Utilities for Brazilian vehicle license plates (old format and Mercosul).
-
-```go
-import "github.com/brazilian-utils/brutils-go/licenseplate"
-
-// Validate license plates
-licenseplate.IsValid("ABC1234", "old_format")  // true
-licenseplate.IsValid("ABC1D34", "mercosul")    // true
-licenseplate.IsValid("ABC1D34", "")            // true (any format)
-
-// Get format
-licenseplate.GetFormat("ABC1234")  // "LLLNNNN"
-licenseplate.GetFormat("ABC1D34")  // "LLLNLNN"
-
-// Format license plate
-licenseplate.Format("ABC1234")  // "ABC-1234" (old format with dash)
-licenseplate.Format("abc1d34")  // "ABC1D34" (Mercosul uppercase)
-
-// Convert old format to Mercosul
-licenseplate.ConvertToMercosul("ABC1234")  // "ABC1B34"
-
-// Generate random license plate
-licenseplate.Generate("LLLNNNN")  // "ABC1234" (old format)
-licenseplate.Generate("LLLNLNN")  // "ABC1D34" (Mercosul)
-```
-
----
-
-### Date
-
-Convert Brazilian dates to Portuguese text.
-
-```go
-import "github.com/brazilian-utils/brutils-go/date"
-
-// Convert date to text
-date.ConvertDateToText("25/12/2024")  // "Vinte e cinco de Dezembro de dois mil e vinte e quatro"
-date.ConvertDateToText("01/01/2000")  // "Primeiro de Janeiro de dois mil"
-```
-
----
-
-### Legal Nature
-
-Legal Nature (Natureza Jurídica) codes from the Brazilian Federal Revenue.
-
-```go
-import "github.com/brazilian-utils/brutils-go/legalnature"
-
-// Validate legal nature code
-legalnature.IsValid("2062")  // true
-legalnature.IsValid("206-2")  // true
-
-// Get description
-legalnature.GetDescription("2062")  // "Sociedade Empresária Limitada"
-legalnature.GetDescription("2046")  // "Sociedade Anônima Aberta"
-```
-
----
-
-### Legal Process
-
-Brazilian legal process number utilities.
-
-```go
-import "github.com/brazilian-utils/brutils-go/legalprocess"
-
-// Validate legal process (20 digits)
-legalprocess.IsValid("12345670820231234567")  // true/false
-
-// Format legal process
-legalprocess.Format("12345670820231234567")  // "1234567-08.2023.1.23.4567"
-
-// Generate random legal process
-legalprocess.Generate(2024, 1)  // "1234567082024123456" (random, year 2024, orgao 1)
-```
-
----
-
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### 📄 License
-
-This project is licensed under the MIT License.
+[🇧🇷 Português](#português) | [🇺🇸 English](#english)
 
 ---
 
@@ -664,3 +334,333 @@ Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request
 ### 📄 Licença
 
 Este projeto está licenciado sob a Licença MIT.
+
+---
+
+## English
+
+### 📖 About
+
+**Brazilian Utils for Go** is a comprehensive library that provides utilities for working with Brazilian-specific data formats and documents. It includes validators, formatters, and generators for various Brazilian documents and data types.
+
+### 🚀 Installation
+
+```shell
+go get -u github.com/brazilian-utils/brutils-go
+```
+
+### 📦 Packages
+
+The library is organized into specialized packages, each handling a specific Brazilian data type:
+
+- **[CPF](#cpf)** - Individual Taxpayer Registry
+- **[CNPJ](#cnpj)** - National Registry of Legal Entities
+- **[CEP](#cep)** - Postal Code
+- **[Phone](#phone)** - Brazilian Phone Numbers
+- **[Currency](#currency)** - Brazilian Real (R$)
+- **[Boleto](#boleto)** - Payment Slip
+- **[Email](#email)** - Email Address
+- **[PIS](#pis)** - Social Integration Program
+- **[CNH](#cnh)** - National Driver's License
+- **[RENAVAM](#renavam)** - National Vehicle Registry
+- **[License Plate](#license-plate)** - Vehicle License Plates
+- **[Date](#date)** - Brazilian Date Utilities
+- **[Legal Nature](#legal-nature)** - Legal Entity Nature
+- **[Legal Process](#legal-process)** - Legal Process Numbers
+
+---
+
+### CPF
+
+CPF (Cadastro de Pessoas Físicas) is the Brazilian individual taxpayer identification number.
+
+```go
+import "github.com/brazilian-utils/brutils-go/cpf"
+
+// Validate CPF
+cpf.IsValid("40364478829")  // true
+cpf.IsValid("403.644.788-29")  // true
+cpf.IsValid("00000000000")  // false (blacklisted)
+
+// Format CPF
+cpf.Format("40364478829")  // "403.644.788-29"
+cpf.Format("403644788")  // "403.644.788" (incomplete)
+
+// Generate random valid CPF
+cpf.Generate()  // "12345678909" (random)
+```
+
+---
+
+### CNPJ
+
+CNPJ (Cadastro Nacional da Pessoa Jurídica) is the Brazilian company identification number.
+
+```go
+import "github.com/brazilian-utils/brutils-go/cnpj"
+
+// Validate CNPJ
+cnpj.IsValid("11222333000181")  // true
+cnpj.IsValid("11.222.333/0001-81")  // true
+cnpj.IsValid("00000000000000")  // false (blacklisted)
+
+// Format CNPJ
+cnpj.Format("11222333000181")  // "11.222.333/0001-81"
+
+// Generate random valid CNPJ
+cnpj.Generate()  // "12345678000190" (random)
+```
+
+---
+
+### CEP
+
+CEP (Código de Endereçamento Postal) is the Brazilian postal code.
+
+```go
+import "github.com/brazilian-utils/brutils-go/cep"
+
+// Validate CEP
+cep.IsValid("01310100")  // true
+cep.IsValid("01310-100")  // false (must be digits only)
+
+// Format CEP
+cep.Format("01310100")  // "01310-100"
+cep.Format("0131010")  // "" (invalid, returns empty)
+
+// Generate random CEP
+cep.Generate()  // "12345678" (random)
+
+// Fetch address from CEP (uses ViaCEP API)
+addr, err := cep.GetAddressFromCEP("01310100")
+if err == nil {
+    fmt.Println(addr.Logradouro)  // "Avenida Paulista"
+    fmt.Println(addr.Bairro)      // "Bela Vista"
+    fmt.Println(addr.Localidade)  // "São Paulo"
+    fmt.Println(addr.UF)          // "SP"
+}
+
+// Search CEP from address
+ceps, err := cep.GetCEPFromAddress("SP", "São Paulo", "Paulista")
+if err == nil {
+    for _, c := range ceps {
+        fmt.Println(c.CEP, c.Logradouro)
+    }
+}
+```
+
+---
+
+### Phone
+
+Utilities for Brazilian phone numbers (mobile and landline).
+
+```go
+import "github.com/brazilian-utils/brutils-go/phone"
+
+// Validate phone numbers
+phone.IsValid("11987654321", "mobile")    // true
+phone.IsValid("1133334444", "landline")   // true
+phone.IsValid("11987654321", "")          // true (any type)
+
+// Format phone numbers
+phone.Format("11987654321")  // "(11)98765-4321"
+phone.Format("1133334444")   // "(11)3333-4444"
+
+// Remove symbols
+phone.RemoveSymbols("(11) 98765-4321")  // "11987654321"
+
+// Remove international code
+phone.RemoveInternationalDialingCode("5511987654321")  // "11987654321"
+
+// Generate random phone
+phone.Generate("mobile")    // "11987654321" (random mobile)
+phone.Generate("landline")  // "1133334444" (random landline)
+phone.Generate("")          // random mobile or landline
+```
+
+---
+
+### Currency
+
+Format and convert Brazilian Real (R$) values.
+
+```go
+import "github.com/brazilian-utils/brutils-go/currency"
+
+// Format currency
+currency.FormatCurrency(1234.56)  // "R$ 1.234,56"
+currency.FormatCurrency(1000000.00)  // "R$ 1.000.000,00"
+
+// Convert to text (Portuguese)
+currency.ConvertRealToText(1234.56)  // "Mil duzentos e trinta e quatro reais e cinquenta e seis centavos"
+currency.ConvertRealToText(1.00)     // "Um real"
+currency.ConvertRealToText(0.50)     // "Cinquenta centavos"
+currency.ConvertRealToText(-100.00)  // "Menos cem reais"
+```
+
+---
+
+### Boleto
+
+Validate Brazilian bank payment slips (boletos).
+
+```go
+import "github.com/brazilian-utils/brutils-go/boleto"
+
+// Validate boleto digitable line (47 digits)
+boleto.IsValid("34191790010104351004791020150008291070026000")  // true/false
+```
+
+---
+
+### Email
+
+Email address validation.
+
+```go
+import "github.com/brazilian-utils/brutils-go/email"
+
+// Validate email
+email.IsValid("user@example.com")  // true
+email.IsValid("invalid.email")     // false
+email.IsValid(".user@example.com") // false (starts with dot)
+```
+
+---
+
+### PIS
+
+PIS (Programa de Integração Social) is a Brazilian social integration program number.
+
+```go
+import "github.com/brazilian-utils/brutils-go/pis"
+
+// Validate PIS
+pis.IsValid("12345678901")  // true/false
+
+// Format PIS
+pis.Format("12345678901")  // "123.45678.90-1"
+
+// Generate random valid PIS
+pis.Generate()  // "12345678901" (random)
+```
+
+---
+
+### CNH
+
+CNH (Carteira Nacional de Habilitação) is the Brazilian national driver's license.
+
+```go
+import "github.com/brazilian-utils/brutils-go/cnh"
+
+// Validate CNH (11 digits)
+cnh.IsValid("12345678901")  // true/false
+cnh.IsValid("00000000000")  // false (blacklisted)
+```
+
+---
+
+### RENAVAM
+
+RENAVAM is the Brazilian national vehicle registration number.
+
+```go
+import "github.com/brazilian-utils/brutils-go/renavam"
+
+// Validate RENAVAM (11 digits)
+renavam.IsValid("12345678901")  // true/false
+renavam.IsValid("11111111111")  // false (all same digit)
+```
+
+---
+
+### License Plate
+
+Utilities for Brazilian vehicle license plates (old format and Mercosul).
+
+```go
+import "github.com/brazilian-utils/brutils-go/licenseplate"
+
+// Validate license plates
+licenseplate.IsValid("ABC1234", "old_format")  // true
+licenseplate.IsValid("ABC1D34", "mercosul")    // true
+licenseplate.IsValid("ABC1D34", "")            // true (any format)
+
+// Get format
+licenseplate.GetFormat("ABC1234")  // "LLLNNNN"
+licenseplate.GetFormat("ABC1D34")  // "LLLNLNN"
+
+// Format license plate
+licenseplate.Format("ABC1234")  // "ABC-1234" (old format with dash)
+licenseplate.Format("abc1d34")  // "ABC1D34" (Mercosul uppercase)
+
+// Convert old format to Mercosul
+licenseplate.ConvertToMercosul("ABC1234")  // "ABC1B34"
+
+// Generate random license plate
+licenseplate.Generate("LLLNNNN")  // "ABC1234" (old format)
+licenseplate.Generate("LLLNLNN")  // "ABC1D34" (Mercosul)
+```
+
+---
+
+### Date
+
+Convert Brazilian dates to Portuguese text.
+
+```go
+import "github.com/brazilian-utils/brutils-go/date"
+
+// Convert date to text
+date.ConvertDateToText("25/12/2024")  // "Vinte e cinco de Dezembro de dois mil e vinte e quatro"
+date.ConvertDateToText("01/01/2000")  // "Primeiro de Janeiro de dois mil"
+```
+
+---
+
+### Legal Nature
+
+Legal Nature (Natureza Jurídica) codes from the Brazilian Federal Revenue.
+
+```go
+import "github.com/brazilian-utils/brutils-go/legalnature"
+
+// Validate legal nature code
+legalnature.IsValid("2062")  // true
+legalnature.IsValid("206-2")  // true
+
+// Get description
+legalnature.GetDescription("2062")  // "Sociedade Empresária Limitada"
+legalnature.GetDescription("2046")  // "Sociedade Anônima Aberta"
+```
+
+---
+
+### Legal Process
+
+Brazilian legal process number utilities.
+
+```go
+import "github.com/brazilian-utils/brutils-go/legalprocess"
+
+// Validate legal process (20 digits)
+legalprocess.IsValid("12345670820231234567")  // true/false
+
+// Format legal process
+legalprocess.Format("12345670820231234567")  // "1234567-08.2023.1.23.4567"
+
+// Generate random legal process
+legalprocess.Generate(2024, 1)  // "1234567082024123456" (random, year 2024, orgao 1)
+```
+
+---
+
+### 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+### 📄 License
+
+This project is licensed under the MIT License.
