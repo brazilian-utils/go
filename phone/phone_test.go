@@ -26,7 +26,8 @@ var isValidTests = []struct {
 	{"", "", false},
 	{"0035014415", "", false},  // DDD starts with 0
 	{"1005014415", "", false},  // DDD second digit is 0
-	{"1165014415", "", false},  // Landline prefix 6 invalid
+	{"1165014415", "", true},   // Landline prefix 6 valid (Anatel Res. 749/2022 art. 11, I, "a")
+	{"1175014415", "", false},  // Landline prefix 7 invalid
 	{"11994029275a", "", false},
 }
 
@@ -78,7 +79,7 @@ var removeCodeTests = []struct {
 }{
 	{"5511994029275", "11994029275"},
 	{"1635014415", "1635014415"},
-	{"+5511994029275", "+11994029275"},
+	{"+5511994029275", "11994029275"}, // "+" is part of the country code, not kept
 }
 
 func TestRemoveInternationalDialingCode(t *testing.T) {

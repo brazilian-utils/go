@@ -82,7 +82,8 @@ func Generate(year int, orgao int) string {
 }
 
 // checksum computes the 2-digit verification code.
-// Formula: 97 - ((basenum * 100) % 97), zero-padded.
+// ISO 7064 MOD 97-10, per CNJ Resolução 65/2008 art. 1º §2º:
+// DD = 98 - ((N * 100) % 97), zero-padded.
 func checksum(basenum string) string {
 	// Compute basenum % 97 digit by digit to avoid overflow
 	remainder := 0
@@ -90,7 +91,7 @@ func checksum(basenum string) string {
 		remainder = (remainder*10 + int(ch-'0')) % 97
 	}
 	// (basenum * 100) % 97 = (remainder * 100) % 97
-	result := 97 - (remainder*100)%97
+	result := 98 - (remainder*100)%97
 	return fmt.Sprintf("%02d", result)
 }
 

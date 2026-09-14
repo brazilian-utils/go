@@ -10,11 +10,14 @@ import (
 
 var dateRegex = regexp.MustCompile(`^\d{2}/\d{2}/\d{4}$`)
 
+// Month names in lowercase, per Brazilian orthographic norm (months are
+// common nouns, not proper nouns) and the LOA extenso convention (Lei
+// 14.822/2024).
 var monthNames = []string{
 	"",
-	"Janeiro", "Fevereiro", "Março", "Abril",
-	"Maio", "Junho", "Julho", "Agosto",
-	"Setembro", "Outubro", "Novembro", "Dezembro",
+	"janeiro", "fevereiro", "março", "abril",
+	"maio", "junho", "julho", "agosto",
+	"setembro", "outubro", "novembro", "dezembro",
 }
 
 // ConvertDateToText converts a date in Brazilian format (dd/mm/yyyy) to its

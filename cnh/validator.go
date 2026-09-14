@@ -41,32 +41,38 @@ func IsValid(cnh string) bool {
 	firstVerifier := digits[9]
 	secondVerifier := digits[10]
 
-	if !checkFirstVerifier(digits, firstVerifier) {
+	firstRemainder, ok := checkFirstVerifier(digits, firstVerifier)
+	if !ok {
 		return false
 	}
 
-	return checkSecondVerifier(digits, secondVerifier, firstVerifier)
+	return checkSecondVerifier(digits, secondVerifier, firstRemainder)
 }
 
 // checkFirstVerifier validates the 10th digit (first check digit).
 // Sum of first 9 digits weighted by (9-i), mod 11; result is 0 if > 9.
-func checkFirstVerifier(digits []int, firstVerifier int) bool {
+// Returns the raw remainder (before the >9 clamp) alongside the match result,
+// since the second verifier needs to know whether the *unclamped* remainder
+// was >= 10 (not whether the printed digit was), to apply the decrement.
+func checkFirstVerifier(digits []int, firstVerifier int) (int, bool) {
 	sum := 0
 	for i := 0; i < 9; i++ {
 		sum += digits[i] * (9 - i)
 	}
 
-	result := sum % 11
+	remainder := sum % 11
+	result := remainder
 	if result > 9 {
 		result = 0
 	}
 
-	return result == firstVerifier
+	return remainder, result == firstVerifier
 }
 
 // checkSecondVerifier validates the 11th digit (second check digit).
-// Sum of first 9 digits weighted by (i+1), mod 11; adjusted if first verifier > 9.
-func checkSecondVerifier(digits []int, secondVerifier int, firstVerifier int) bool {
+// Sum of first 9 digits weighted by (i+1), mod 11; decremented by 2 when the
+// first verifier's raw remainder was >= 10.
+func checkSecondVerifier(digits []int, secondVerifier int, firstRemainder int) bool {
 	sum := 0
 	for i := 0; i < 9; i++ {
 		sum += digits[i] * (i + 1)
@@ -74,9 +80,9 @@ func checkSecondVerifier(digits []int, secondVerifier int, firstVerifier int) bo
 
 	result := sum % 11
 
-	if firstVerifier > 9 {
+	if firstRemainder >= 10 {
 		if (result - 2) < 0 {
-			result = result + 9
+			result = result + 9 // (result - 2) + 11, wrapped mod 11
 		} else {
 			result = result - 2
 		}

@@ -31,7 +31,7 @@ const cpfSize = 11
 func IsValid(cpf string) bool {
 	cpfNumbers := helpers.OnlyNumbers(cpf)
 
-	return hasValidLength(cpfNumbers) && !isBlacklisted(cpf) && isValidChecksum(cpfNumbers)
+	return hasValidLength(cpfNumbers) && !isBlacklisted(cpfNumbers) && isValidChecksum(cpfNumbers)
 }
 
 // Perform checksum validation

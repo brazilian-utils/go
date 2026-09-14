@@ -11,8 +11,8 @@ var tables = []struct {
 	expected bool
 }{
 	// Valid CNHs
-	{"98765432100", true},
-	{"987654321-00", true},
+	{"98765432109", true}, // triggers the decrement (1st check digit's raw remainder is 10)
+	{"123456789-00", true},
 
 	// Blacklisted sequences
 	{"00000000000", false},

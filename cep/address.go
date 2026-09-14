@@ -25,8 +25,29 @@ type Address struct {
 }
 
 // viaCEPError is the response shape when a CEP is not found.
+// ViaCEP sends "erro" as the boolean true, but in practice has also been
+// observed sending it as the string "true" — decoding straight into a bool
+// silently fails the Unmarshal in that case, so this accepts either shape.
 type viaCEPError struct {
-	Erro bool `json:"erro"`
+	Erro flexBool `json:"erro"`
+}
+
+// flexBool unmarshals from a JSON bool or from a JSON string ("true"/"false").
+type flexBool bool
+
+func (b *flexBool) UnmarshalJSON(data []byte) error {
+	var asBool bool
+	if err := json.Unmarshal(data, &asBool); err == nil {
+		*b = flexBool(asBool)
+		return nil
+	}
+
+	var asString string
+	if err := json.Unmarshal(data, &asString); err != nil {
+		return err
+	}
+	*b = flexBool(asString == "true")
+	return nil
 }
 
 // baseAPIURL is the ViaCEP API base URL. It is a variable so tests can override it.
@@ -62,7 +83,7 @@ func GetAddressFromCEP(cep string) (*Address, error) {
 	}
 
 	var errResp viaCEPError
-	if json.Unmarshal(raw, &errResp) == nil && errResp.Erro {
+	if json.Unmarshal(raw, &errResp) == nil && bool(errResp.Erro) {
 		return nil, fmt.Errorf("CEP not found: %s", cep)
 	}
 

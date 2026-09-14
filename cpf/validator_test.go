@@ -24,6 +24,12 @@ var tables = []struct {
 	{"403644788290", false},
 	{"40364478829", true},
 	{"962.718.458-60", true},
+
+	// Formatted repeated-digit sequences: the blacklist used to be checked
+	// against the raw (formatted) input, which never matched, letting these
+	// slip past even though they mathematically satisfy the checksum.
+	{"000.000.000-00", false},
+	{"111.111.111-11", false},
 }
 
 func TestValidate(t *testing.T) {

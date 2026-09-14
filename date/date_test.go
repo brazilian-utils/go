@@ -13,12 +13,14 @@ var convertTests = []struct {
 	input    string
 	expected string
 }{
-	{"01/01/2024", "Primeiro de Janeiro de dois mil e vinte e quatro"},
-	{"15/06/1990", "Quinze de Junho de mil, novecentos e noventa"},
-	{"25/12/2000", "Vinte e cinco de Dezembro de dois mil"},
-	{"02/03/1985", "Dois de Março de mil, novecentos e oitenta e cinco"},
-	{"31/07/2023", "Trinta e um de Julho de dois mil e vinte e três"},
-	{"10/10/2010", "Dez de Outubro de dois mil e dez"},
+	// Months lowercase: they're common nouns in Portuguese orthography,
+	// matching the LOA extenso convention (Lei 14.822/2024).
+	{"01/01/2024", "Primeiro de janeiro de dois mil e vinte e quatro"},
+	{"15/06/1990", "Quinze de junho de mil, novecentos e noventa"},
+	{"25/12/2000", "Vinte e cinco de dezembro de dois mil"},
+	{"02/03/1985", "Dois de março de mil, novecentos e oitenta e cinco"},
+	{"31/07/2023", "Trinta e um de julho de dois mil e vinte e três"},
+	{"10/10/2010", "Dez de outubro de dois mil e dez"},
 
 	// Invalid formats
 	{"", ""},

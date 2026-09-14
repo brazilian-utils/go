@@ -63,7 +63,7 @@ var legalNatureTable = map[string]string{
 	"3131": "Entidade Sindical",
 	"3204": "Estabelecimento, no Brasil, de Fundação ou Associação Estrangeiras",
 	"3212": "Fundação ou Associação Domiciliada no Exterior",
-	"3999": "Outras Formas de Associação",
+	"3999": "Associação Privada",
 	// 4. PESSOAS FÍSICAS
 	"4014": "Empresa Individual Imobiliária",
 	"4022": "Segurado Especial",

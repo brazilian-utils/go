@@ -11,12 +11,12 @@ var isValidTests = []struct {
 	input    string
 	expected bool
 }{
-	// Valid IDs from Python docstring
-	{"68476506020233030000", true},
-	{"51808233620233030000", true},
+	// Valid IDs (DD = 98 - ((N*100) mod 97), per CNJ Res. 65/2008 art. 1º §2º)
+	{"68476506120233030000", true},
+	{"51808233720233030000", true},
 
 	// Formatted valid IDs
-	{"6847650-60.2023.3.03.0000", true},
+	{"6847650-61.2023.3.03.0000", true},
 
 	// Invalid
 	{"123", false},

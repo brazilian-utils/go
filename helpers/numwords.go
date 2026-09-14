@@ -68,6 +68,10 @@ func NumberToPortuguese(n int64) string {
 		return "zero"
 	}
 
+	if n < 0 {
+		return "menos " + NumberToPortuguese(-n)
+	}
+
 	type group struct {
 		text  string
 		value int // the 3-digit group count (0-999)

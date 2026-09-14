@@ -23,6 +23,11 @@ var tables = []struct {
 	{"99999999999999", false},
 	{"13723705000189", true},
 	{"60.391.947/0001-00", true},
+
+	// Formatted all-zero sequence: the blacklist used to be checked against
+	// the raw (formatted) input, which never matched, letting this slip past
+	// even though it mathematically satisfies the checksum.
+	{"00.000.000/0000-00", false},
 }
 
 func TestValidate(t *testing.T) {

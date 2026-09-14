@@ -30,7 +30,7 @@ const cnpjSize = 14
 func IsValid(cnpj string) bool {
 	digits := helpers.OnlyNumbers(cnpj)
 
-	return hasValidLength(digits) && !isBlacklisted(cnpj) && isValidChecksum(digits)
+	return hasValidLength(digits) && !isBlacklisted(digits) && isValidChecksum(digits)
 }
 
 // Perform checksum validation

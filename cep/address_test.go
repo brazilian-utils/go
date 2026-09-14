@@ -64,6 +64,29 @@ func TestGetAddressFromCEP_NotFound(t *testing.T) {
 	}
 }
 
+// ViaCEP has been observed sending "erro" as the string "true" rather than
+// the boolean true; a plain bool field silently fails to decode that shape,
+// which used to make a not-found CEP come back as a zeroed Address with no
+// error instead of an error.
+func TestGetAddressFromCEP_NotFound_ErroAsString(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte(`{"erro": "true"}`))
+	}))
+	defer server.Close()
+
+	oldURL := baseAPIURL
+	baseAPIURL = server.URL
+	defer func() { baseAPIURL = oldURL }()
+
+	addr, err := GetAddressFromCEP("00000000")
+	if err == nil {
+		t.Fatal("Expected error for non-existent CEP, got nil")
+	}
+	if addr != nil {
+		t.Errorf("Expected nil address, got %v", addr)
+	}
+}
+
 func TestGetAddressFromCEP_InvalidCEP(t *testing.T) {
 	_, err := GetAddressFromCEP("123")
 	if err == nil {

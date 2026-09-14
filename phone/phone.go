@@ -8,7 +8,8 @@ import (
 )
 
 var mobileRegex = regexp.MustCompile(`^[1-9][1-9]9\d{8}$`)
-var landlineRegex = regexp.MustCompile(`^[1-9][1-9][2-5]\d{7}$`)
+// Landline first digit 2-6, per Anatel Res. 749/2022 art. 11, I, "a".
+var landlineRegex = regexp.MustCompile(`^[1-9][1-9][2-6]\d{7}$`)
 
 // IsValid checks if a Brazilian phone number is valid.
 // phoneType can be "mobile", "landline", or "" (accepts either).
@@ -44,13 +45,21 @@ func RemoveSymbols(phoneNumber string) string {
 	return r.Replace(phoneNumber)
 }
 
-// RemoveInternationalDialingCode removes the Brazilian country code "55"
-// from a phone number if present and the number is long enough.
+// RemoveInternationalDialingCode removes the Brazilian country code ("+55",
+// "0055" or "55") from a phone number if present and the number is long
+// enough. Unlike a plain digit-strip, this also drops a leading "+" instead
+// of leaving it behind.
 func RemoveInternationalDialingCode(phoneNumber string) string {
 	cleaned := strings.ReplaceAll(phoneNumber, " ", "")
-	if len(cleaned) > 11 && strings.Contains(cleaned, "55") {
-		return strings.Replace(phoneNumber, "55", "", 1)
+	digits := strings.TrimPrefix(cleaned, "+")
+
+	switch {
+	case strings.HasPrefix(digits, "0055") && len(digits) > 13:
+		return digits[4:]
+	case strings.HasPrefix(digits, "55") && len(digits) > 11:
+		return digits[2:]
 	}
+
 	return phoneNumber
 }
 
@@ -95,6 +104,6 @@ func generateMobile() string {
 
 func generateLandline() string {
 	ddd := generateDDD()
-	prefix := rand.Intn(4) + 2 // 2-5
+	prefix := rand.Intn(5) + 2 // 2-6
 	return fmt.Sprintf("%s%d%07d", ddd, prefix, rand.Intn(10000000))
 }
