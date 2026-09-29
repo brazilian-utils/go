@@ -33,3 +33,41 @@ func TestFormat(t *testing.T) {
 		}
 	}
 }
+
+var removeSymbolsTests = []struct {
+	input    string
+	expected string
+}{
+	{"83159562131", "83159562131"},
+	{"831.595.621-31", "83159562131"},
+	{"", ""},
+	{"   ", "   "},
+	{"abc", "abc"},
+}
+
+func TestRemoveSymbols(t *testing.T) {
+	for _, table := range removeSymbolsTests {
+		if res := cpf.RemoveSymbols(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}
+
+var parseTests = []struct {
+	input    string
+	expected string
+}{
+	{"943.895.751-04", "94389575104"},
+	{"94389575104", "94389575104"},
+	{"943.?ABC895.751-04abc", "94389575104"},
+	{"", ""},
+	{"94389575104123", "94389575104"},
+}
+
+func TestParse(t *testing.T) {
+	for _, table := range parseTests {
+		if res := cpf.Parse(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}

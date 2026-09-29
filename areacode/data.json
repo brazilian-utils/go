@@ -1,0 +1,687 @@
+{
+  "source": [
+    "https://sistemas.anatel.gov.br/anexar-api/publico/anexos/download/7c51a53e26edf77426cb85e42f1080de (Anatel, \"Perguntas Frequentes - Areas Tarifarias\", grouping all 67 DDDs/CNs by state, citing the Plano Geral de Codigos Nacionais - PGCN, Resolucao Anatel no 749/2022, and Acordao no 202/2025)",
+    "https://www.anatel.gov.br/setorregulado/plano-de-numeracao-brasileiro",
+    "Secondary cross-check for the individual border municipalities of the 4 cross-border DDDs (Porto Uniao/SC on DDD 42, Rio Negro/PR on DDD 47, Barracao/PR on DDD 49): consumer DDD-lookup sites (ddi-ddd.com.br, claro.com.br/blog, codigosddd.com.br) corroborated against each other."
+  ],
+  "fetchedAt": "2026-09-26",
+  "coverage": "full",
+  "note": "All 67 DDDs (Areas de Numeracao / Codigos Nacionais) in use under the Anatel Plano Geral de Numeracao. 4 DDDs straddle a state border (61 DF+GO, 42 PR+SC, 47 SC+PR, 49 SC+PR); \"stateCodes\" lists the seat state first. Anatel groups these DDDs by state officially; the exact split municipality for 42/47/49 was corroborated across independent secondary sources since Anatel's own FAQ names only the DF/GO (61) case as a worked example.",
+  "count": 67,
+  "data": [
+    {
+      "areaCode": 11,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 12,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 13,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 14,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 15,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 16,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 17,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 18,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 19,
+      "stateCode": "SP",
+      "stateName": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "SP"
+      ]
+    },
+    {
+      "areaCode": 21,
+      "stateCode": "RJ",
+      "stateName": "Rio de Janeiro",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "RJ"
+      ]
+    },
+    {
+      "areaCode": 22,
+      "stateCode": "RJ",
+      "stateName": "Rio de Janeiro",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "RJ"
+      ]
+    },
+    {
+      "areaCode": 24,
+      "stateCode": "RJ",
+      "stateName": "Rio de Janeiro",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "RJ"
+      ]
+    },
+    {
+      "areaCode": 27,
+      "stateCode": "ES",
+      "stateName": "Espírito Santo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "ES"
+      ]
+    },
+    {
+      "areaCode": 28,
+      "stateCode": "ES",
+      "stateName": "Espírito Santo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "ES"
+      ]
+    },
+    {
+      "areaCode": 31,
+      "stateCode": "MG",
+      "stateName": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "MG"
+      ]
+    },
+    {
+      "areaCode": 32,
+      "stateCode": "MG",
+      "stateName": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "MG"
+      ]
+    },
+    {
+      "areaCode": 33,
+      "stateCode": "MG",
+      "stateName": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "MG"
+      ]
+    },
+    {
+      "areaCode": 34,
+      "stateCode": "MG",
+      "stateName": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "MG"
+      ]
+    },
+    {
+      "areaCode": 35,
+      "stateCode": "MG",
+      "stateName": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "MG"
+      ]
+    },
+    {
+      "areaCode": 37,
+      "stateCode": "MG",
+      "stateName": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "MG"
+      ]
+    },
+    {
+      "areaCode": 38,
+      "stateCode": "MG",
+      "stateName": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "stateCodes": [
+        "MG"
+      ]
+    },
+    {
+      "areaCode": 41,
+      "stateCode": "PR",
+      "stateName": "Paraná",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "PR"
+      ]
+    },
+    {
+      "areaCode": 42,
+      "stateCode": "PR",
+      "stateName": "Paraná",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "PR",
+        "SC"
+      ]
+    },
+    {
+      "areaCode": 43,
+      "stateCode": "PR",
+      "stateName": "Paraná",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "PR"
+      ]
+    },
+    {
+      "areaCode": 44,
+      "stateCode": "PR",
+      "stateName": "Paraná",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "PR"
+      ]
+    },
+    {
+      "areaCode": 45,
+      "stateCode": "PR",
+      "stateName": "Paraná",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "PR"
+      ]
+    },
+    {
+      "areaCode": 46,
+      "stateCode": "PR",
+      "stateName": "Paraná",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "PR"
+      ]
+    },
+    {
+      "areaCode": 47,
+      "stateCode": "SC",
+      "stateName": "Santa Catarina",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "SC",
+        "PR"
+      ]
+    },
+    {
+      "areaCode": 48,
+      "stateCode": "SC",
+      "stateName": "Santa Catarina",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "SC"
+      ]
+    },
+    {
+      "areaCode": 49,
+      "stateCode": "SC",
+      "stateName": "Santa Catarina",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "SC",
+        "PR"
+      ]
+    },
+    {
+      "areaCode": 51,
+      "stateCode": "RS",
+      "stateName": "Rio Grande do Sul",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "RS"
+      ]
+    },
+    {
+      "areaCode": 53,
+      "stateCode": "RS",
+      "stateName": "Rio Grande do Sul",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "RS"
+      ]
+    },
+    {
+      "areaCode": 54,
+      "stateCode": "RS",
+      "stateName": "Rio Grande do Sul",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "RS"
+      ]
+    },
+    {
+      "areaCode": 55,
+      "stateCode": "RS",
+      "stateName": "Rio Grande do Sul",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "stateCodes": [
+        "RS"
+      ]
+    },
+    {
+      "areaCode": 61,
+      "stateCode": "DF",
+      "stateName": "Distrito Federal",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "stateCodes": [
+        "DF",
+        "GO"
+      ]
+    },
+    {
+      "areaCode": 62,
+      "stateCode": "GO",
+      "stateName": "Goiás",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "stateCodes": [
+        "GO"
+      ]
+    },
+    {
+      "areaCode": 63,
+      "stateCode": "TO",
+      "stateName": "Tocantins",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "TO"
+      ]
+    },
+    {
+      "areaCode": 64,
+      "stateCode": "GO",
+      "stateName": "Goiás",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "stateCodes": [
+        "GO"
+      ]
+    },
+    {
+      "areaCode": 65,
+      "stateCode": "MT",
+      "stateName": "Mato Grosso",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "stateCodes": [
+        "MT"
+      ]
+    },
+    {
+      "areaCode": 66,
+      "stateCode": "MT",
+      "stateName": "Mato Grosso",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "stateCodes": [
+        "MT"
+      ]
+    },
+    {
+      "areaCode": 67,
+      "stateCode": "MS",
+      "stateName": "Mato Grosso do Sul",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "stateCodes": [
+        "MS"
+      ]
+    },
+    {
+      "areaCode": 68,
+      "stateCode": "AC",
+      "stateName": "Acre",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "AC"
+      ]
+    },
+    {
+      "areaCode": 69,
+      "stateCode": "RO",
+      "stateName": "Rondônia",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "RO"
+      ]
+    },
+    {
+      "areaCode": 71,
+      "stateCode": "BA",
+      "stateName": "Bahia",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "BA"
+      ]
+    },
+    {
+      "areaCode": 73,
+      "stateCode": "BA",
+      "stateName": "Bahia",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "BA"
+      ]
+    },
+    {
+      "areaCode": 74,
+      "stateCode": "BA",
+      "stateName": "Bahia",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "BA"
+      ]
+    },
+    {
+      "areaCode": 75,
+      "stateCode": "BA",
+      "stateName": "Bahia",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "BA"
+      ]
+    },
+    {
+      "areaCode": 77,
+      "stateCode": "BA",
+      "stateName": "Bahia",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "BA"
+      ]
+    },
+    {
+      "areaCode": 79,
+      "stateCode": "SE",
+      "stateName": "Sergipe",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "SE"
+      ]
+    },
+    {
+      "areaCode": 81,
+      "stateCode": "PE",
+      "stateName": "Pernambuco",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "PE"
+      ]
+    },
+    {
+      "areaCode": 82,
+      "stateCode": "AL",
+      "stateName": "Alagoas",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "AL"
+      ]
+    },
+    {
+      "areaCode": 83,
+      "stateCode": "PB",
+      "stateName": "Paraíba",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "PB"
+      ]
+    },
+    {
+      "areaCode": 84,
+      "stateCode": "RN",
+      "stateName": "Rio Grande do Norte",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "RN"
+      ]
+    },
+    {
+      "areaCode": 85,
+      "stateCode": "CE",
+      "stateName": "Ceará",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "CE"
+      ]
+    },
+    {
+      "areaCode": 86,
+      "stateCode": "PI",
+      "stateName": "Piauí",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "PI"
+      ]
+    },
+    {
+      "areaCode": 87,
+      "stateCode": "PE",
+      "stateName": "Pernambuco",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "PE"
+      ]
+    },
+    {
+      "areaCode": 88,
+      "stateCode": "CE",
+      "stateName": "Ceará",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "CE"
+      ]
+    },
+    {
+      "areaCode": 89,
+      "stateCode": "PI",
+      "stateName": "Piauí",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "PI"
+      ]
+    },
+    {
+      "areaCode": 91,
+      "stateCode": "PA",
+      "stateName": "Pará",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "PA"
+      ]
+    },
+    {
+      "areaCode": 92,
+      "stateCode": "AM",
+      "stateName": "Amazonas",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "AM"
+      ]
+    },
+    {
+      "areaCode": 93,
+      "stateCode": "PA",
+      "stateName": "Pará",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "PA"
+      ]
+    },
+    {
+      "areaCode": 94,
+      "stateCode": "PA",
+      "stateName": "Pará",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "PA"
+      ]
+    },
+    {
+      "areaCode": 95,
+      "stateCode": "RR",
+      "stateName": "Roraima",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "RR"
+      ]
+    },
+    {
+      "areaCode": 96,
+      "stateCode": "AP",
+      "stateName": "Amapá",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "AP"
+      ]
+    },
+    {
+      "areaCode": 97,
+      "stateCode": "AM",
+      "stateName": "Amazonas",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "stateCodes": [
+        "AM"
+      ]
+    },
+    {
+      "areaCode": 98,
+      "stateCode": "MA",
+      "stateName": "Maranhão",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "MA"
+      ]
+    },
+    {
+      "areaCode": 99,
+      "stateCode": "MA",
+      "stateName": "Maranhão",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "stateCodes": [
+        "MA"
+      ]
+    }
+  ]
+}

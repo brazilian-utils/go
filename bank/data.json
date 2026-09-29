@@ -1,0 +1,364 @@
+{
+  "source": "https://www.bcb.gov.br/content/estabilidadefinanceira/str1/ParticipantesSTR.csv (Banco Central do Brasil, official STR - Sistema de Transferencia de Reservas - participants list, updated daily)",
+  "fetchedAt": "2026-09-26",
+  "coverage": "full",
+  "note": "Every STR participant that has a COMPE code (Participa_da_Compe = \"Sim\"), i.e. every institution reachable by the legacy 3-digit compensation code. Institutions without a COMPE code (e.g. Selic, Bacen itself, and most Pix-only participants) are intentionally excluded, matching the \"Bank\" dataset contract. Name is the official Nome_Extenso field from the BCB source.",
+  "count": 71,
+  "data": [
+    {
+      "code": "001",
+      "ispb": "00000000",
+      "name": "Banco do Brasil S.A."
+    },
+    {
+      "code": "003",
+      "ispb": "04902979",
+      "name": "BANCO DA AMAZONIA S.A."
+    },
+    {
+      "code": "004",
+      "ispb": "07237373",
+      "name": "Banco do Nordeste do Brasil S.A."
+    },
+    {
+      "code": "010",
+      "ispb": "81723108",
+      "name": "CREDICOAMO CREDITO RURAL COOPERATIVA"
+    },
+    {
+      "code": "018",
+      "ispb": "57839805",
+      "name": "Banco Tricury S.A."
+    },
+    {
+      "code": "021",
+      "ispb": "28127603",
+      "name": "BANESTES S.A. BANCO DO ESTADO DO ESPIRITO SANTO"
+    },
+    {
+      "code": "033",
+      "ispb": "90400888",
+      "name": "BANCO SANTANDER (BRASIL) S.A."
+    },
+    {
+      "code": "036",
+      "ispb": "06271464",
+      "name": "Banco Bradesco BBI S.A."
+    },
+    {
+      "code": "037",
+      "ispb": "04913711",
+      "name": "Banco do Estado do Pará S.A."
+    },
+    {
+      "code": "041",
+      "ispb": "92702067",
+      "name": "Banco do Estado do Rio Grande do Sul S.A."
+    },
+    {
+      "code": "047",
+      "ispb": "13009717",
+      "name": "Banco do Estado de Sergipe S.A."
+    },
+    {
+      "code": "063",
+      "ispb": "04184779",
+      "name": "Banco Bradescard S.A."
+    },
+    {
+      "code": "065",
+      "ispb": "48795256",
+      "name": "Banco AndBank (Brasil) S.A."
+    },
+    {
+      "code": "069",
+      "ispb": "61033106",
+      "name": "Banco Crefisa S.A."
+    },
+    {
+      "code": "070",
+      "ispb": "00000208",
+      "name": "BRB - BANCO DE BRASILIA S.A."
+    },
+    {
+      "code": "074",
+      "ispb": "03017677",
+      "name": "Banco J. Safra S.A."
+    },
+    {
+      "code": "077",
+      "ispb": "00416968",
+      "name": "Banco Inter S.A."
+    },
+    {
+      "code": "083",
+      "ispb": "10690848",
+      "name": "Banco da China Brasil S.A."
+    },
+    {
+      "code": "084",
+      "ispb": "02398976",
+      "name": "SISPRIME DO BRASIL - COOPERATIVA DE CRÉDITO"
+    },
+    {
+      "code": "085",
+      "ispb": "05463212",
+      "name": "Cooperativa Central de Crédito - Ailos"
+    },
+    {
+      "code": "089",
+      "ispb": "62109566",
+      "name": "CREDISAN COOPERATIVA DE CRÉDITO"
+    },
+    {
+      "code": "097",
+      "ispb": "04632856",
+      "name": "CREDISIS - CENTRAL DE COOPERATIVAS DE CRÉDITO"
+    },
+    {
+      "code": "099",
+      "ispb": "03046391",
+      "name": "UNIPRIME CENTRAL NACIONAL - CENTRAL NACIONAL DE COOPERATIVA DE CREDITO"
+    },
+    {
+      "code": "104",
+      "ispb": "00360305",
+      "name": "CAIXA ECONOMICA FEDERAL"
+    },
+    {
+      "code": "107",
+      "ispb": "15114366",
+      "name": "Banco Bocom BBM S.A."
+    },
+    {
+      "code": "120",
+      "ispb": "33603457",
+      "name": "BANCO RODOBENS S.A."
+    },
+    {
+      "code": "122",
+      "ispb": "33147315",
+      "name": "Banco Bradesco BERJ S.A."
+    },
+    {
+      "code": "124",
+      "ispb": "15357060",
+      "name": "Banco Woori Bank do Brasil S.A."
+    },
+    {
+      "code": "125",
+      "ispb": "45246410",
+      "name": "BANCO GENIAL S.A."
+    },
+    {
+      "code": "133",
+      "ispb": "10398952",
+      "name": "CONFEDERAÇÃO NACIONAL DAS COOPERATIVAS CENTRAIS DE CRÉDITO E ECONOMIA FAMILIAR E SOLIDÁRIA - CRESOL CONFEDERAÇÃO"
+    },
+    {
+      "code": "136",
+      "ispb": "00315557",
+      "name": "COOPERATIVA CENTRAL DE CRÉDITO UNICRED DO BRASIL - UNICRED DO BRASIL"
+    },
+    {
+      "code": "208",
+      "ispb": "30306294",
+      "name": "Banco BTG Pactual S.A."
+    },
+    {
+      "code": "212",
+      "ispb": "92894922",
+      "name": "Banco Original S.A."
+    },
+    {
+      "code": "213",
+      "ispb": "54403563",
+      "name": "Banco Arbi S.A."
+    },
+    {
+      "code": "224",
+      "ispb": "58616418",
+      "name": "Banco Fibra S.A."
+    },
+    {
+      "code": "237",
+      "ispb": "60746948",
+      "name": "Banco Bradesco S.A."
+    },
+    {
+      "code": "241",
+      "ispb": "31597552",
+      "name": "BANCO CLASSICO S.A."
+    },
+    {
+      "code": "249",
+      "ispb": "61182408",
+      "name": "Banco Investcred Unibanco S.A."
+    },
+    {
+      "code": "254",
+      "ispb": "14388334",
+      "name": "PARANÁ BANCO S.A."
+    },
+    {
+      "code": "265",
+      "ispb": "33644196",
+      "name": "Banco Fator S.A."
+    },
+    {
+      "code": "266",
+      "ispb": "33132044",
+      "name": "BANCO CEDULA S.A."
+    },
+    {
+      "code": "281",
+      "ispb": "76461557",
+      "name": "Cooperativa de Crédito Rural Coopavel"
+    },
+    {
+      "code": "318",
+      "ispb": "61186680",
+      "name": "Banco BMG S.A."
+    },
+    {
+      "code": "322",
+      "ispb": "01073966",
+      "name": "Cooperativa de Crédito Rural de Abelardo Luz - Sulcredi/Crediluz"
+    },
+    {
+      "code": "341",
+      "ispb": "60701190",
+      "name": "ITAÚ UNIBANCO S.A."
+    },
+    {
+      "code": "389",
+      "ispb": "17184037",
+      "name": "Banco Mercantil do Brasil S.A."
+    },
+    {
+      "code": "394",
+      "ispb": "07207996",
+      "name": "Banco Bradesco Financiamentos S.A."
+    },
+    {
+      "code": "421",
+      "ispb": "39343350",
+      "name": "LAR COOPERATIVA DE CRÉDITO - LAR CREDI"
+    },
+    {
+      "code": "422",
+      "ispb": "58160789",
+      "name": "Banco Safra S.A."
+    },
+    {
+      "code": "430",
+      "ispb": "00204963",
+      "name": "COOPERATIVA DE CREDITO RURAL SEARA - CREDISEARA"
+    },
+    {
+      "code": "435",
+      "ispb": "38224857",
+      "name": "DELFINANCE SOCIEDADE DE CREDITO DIRETO S.A."
+    },
+    {
+      "code": "456",
+      "ispb": "60498557",
+      "name": "Banco MUFG Brasil S.A."
+    },
+    {
+      "code": "477",
+      "ispb": "33042953",
+      "name": "Citibank N.A."
+    },
+    {
+      "code": "487",
+      "ispb": "62331228",
+      "name": "DEUTSCHE BANK S.A. - BANCO ALEMAO"
+    },
+    {
+      "code": "505",
+      "ispb": "32062580",
+      "name": "BANCO UBS (BRASIL) S.A."
+    },
+    {
+      "code": "511",
+      "ispb": "44683140",
+      "name": "MAGNUM SOCIEDADE DE CRÉDITO DIRETO S.A."
+    },
+    {
+      "code": "600",
+      "ispb": "59118133",
+      "name": "Banco Luso Brasileiro S.A."
+    },
+    {
+      "code": "604",
+      "ispb": "31895683",
+      "name": "Banco Industrial do Brasil S.A."
+    },
+    {
+      "code": "611",
+      "ispb": "61820817",
+      "name": "Banco Paulista S.A."
+    },
+    {
+      "code": "612",
+      "ispb": "31880826",
+      "name": "Banco Guanabara S.A."
+    },
+    {
+      "code": "633",
+      "ispb": "68900810",
+      "name": "Banco Rendimento S.A."
+    },
+    {
+      "code": "637",
+      "ispb": "60889128",
+      "name": "BANCO SOFISA S.A."
+    },
+    {
+      "code": "643",
+      "ispb": "62144175",
+      "name": "Banco Pine S.A."
+    },
+    {
+      "code": "707",
+      "ispb": "62232889",
+      "name": "Banco Daycoval S.A."
+    },
+    {
+      "code": "743",
+      "ispb": "00795423",
+      "name": "Banco Semear S.A."
+    },
+    {
+      "code": "745",
+      "ispb": "33479023",
+      "name": "Banco Citibank S.A."
+    },
+    {
+      "code": "748",
+      "ispb": "01181521",
+      "name": "BANCO COOPERATIVO SICREDI S.A."
+    },
+    {
+      "code": "752",
+      "ispb": "01522368",
+      "name": "Banco BNP Paribas Brasil S.A."
+    },
+    {
+      "code": "753",
+      "ispb": "74828799",
+      "name": "Novo Banco Continental S.A. - Banco Múltiplo"
+    },
+    {
+      "code": "756",
+      "ispb": "02038232",
+      "name": "BANCO COOPERATIVO SICOOB S.A. - BANCO SICOOB"
+    },
+    {
+      "code": "757",
+      "ispb": "02318507",
+      "name": "BANCO KEB HANA DO BRASIL S.A."
+    }
+  ]
+}

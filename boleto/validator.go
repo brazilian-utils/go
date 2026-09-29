@@ -11,6 +11,9 @@ import (
 // Every Digitable Line from Boleto has exactly 47 characters
 const digitableLineLength = 47
 
+// A boleto de arrecadação linha digitável has exactly 48 characters.
+const arrecadacaoDigitableLineLength = 48
+
 var digitableLineToBoletoConvertPositions = []struct {
 	start int
 	end   int

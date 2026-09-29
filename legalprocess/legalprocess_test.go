@@ -55,7 +55,7 @@ func TestFormat(t *testing.T) {
 func TestGenerate(t *testing.T) {
 	year := time.Now().Year()
 	for orgao := 1; orgao <= 9; orgao++ {
-		generated := legalprocess.Generate(year, orgao)
+		generated := legalprocess.Generate(legalprocess.GenerateOptions{Year: year, Court: orgao})
 		if generated == "" {
 			t.Errorf("Expected non-empty result for orgao %d", orgao)
 			continue
@@ -70,14 +70,39 @@ func TestGenerate(t *testing.T) {
 	}
 }
 
+func TestGenerateNoOptions(t *testing.T) {
+	generated := legalprocess.Generate()
+	if len(generated) != 20 {
+		t.Errorf("Expected 20 digits, got %d: %v", len(generated), generated)
+	}
+	if !legalprocess.IsValid(generated) {
+		t.Errorf("Generated invalid ID: %v", generated)
+	}
+}
+
 func TestGenerateInvalidArgs(t *testing.T) {
-	if res := legalprocess.Generate(2020, 5); res != "" {
+	if res := legalprocess.Generate(legalprocess.GenerateOptions{Year: 2020, Court: 5}); res != "" {
 		t.Errorf("Expected empty for past year, got %v", res)
 	}
-	if res := legalprocess.Generate(time.Now().Year(), 0); res != "" {
-		t.Errorf("Expected empty for orgao 0, got %v", res)
-	}
-	if res := legalprocess.Generate(time.Now().Year(), 10); res != "" {
+	if res := legalprocess.Generate(legalprocess.GenerateOptions{Year: time.Now().Year(), Court: 10}); res != "" {
 		t.Errorf("Expected empty for orgao 10, got %v", res)
+	}
+}
+
+func TestRemoveSymbols(t *testing.T) {
+	if res := legalprocess.RemoveSymbols("1666923-98.2026.9.26.4931"); res != "16669239820269264931" {
+		t.Errorf("Expected 16669239820269264931, got %v", res)
+	}
+	if res := legalprocess.RemoveSymbols("abc"); res != "abc" {
+		t.Errorf("Expected abc, got %v", res)
+	}
+}
+
+func TestParse(t *testing.T) {
+	if res := legalprocess.Parse("0002080-25.2012.5.15.0049"); res != "00020802520125150049" {
+		t.Errorf("Expected 00020802520125150049, got %v", res)
+	}
+	if res := legalprocess.Parse("00020802520125150049123"); res != "00020802520125150049" {
+		t.Errorf("Expected truncation to 20 digits, got %v", res)
 	}
 }

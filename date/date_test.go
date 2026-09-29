@@ -15,16 +15,16 @@ var convertTests = []struct {
 }{
 	// Months lowercase: they're common nouns in Portuguese orthography,
 	// matching the LOA extenso convention (Lei 14.822/2024).
-	{"01/01/2024", "Primeiro de janeiro de dois mil e vinte e quatro"},
-	{"15/06/1990", "Quinze de junho de mil, novecentos e noventa"},
-	{"25/12/2000", "Vinte e cinco de dezembro de dois mil"},
-	{"02/03/1985", "Dois de março de mil, novecentos e oitenta e cinco"},
-	{"31/07/2023", "Trinta e um de julho de dois mil e vinte e três"},
-	{"10/10/2010", "Dez de outubro de dois mil e dez"},
+	{"01/01/2024", "primeiro de janeiro de dois mil e vinte e quatro"},
+	{"15/06/1990", "quinze de junho de mil novecentos e noventa"},
+	{"25/12/2000", "vinte e cinco de dezembro de dois mil"},
+	{"02/03/1985", "dois de março de mil novecentos e oitenta e cinco"},
+	{"31/07/2023", "trinta e um de julho de dois mil e vinte e três"},
+	{"10/10/2010", "dez de outubro de dois mil e dez"},
+	{"2024-12-25", "vinte e cinco de dezembro de dois mil e vinte e quatro"},
 
 	// Invalid formats
 	{"", ""},
-	{"2024-01-01", ""},
 	{"01-01-2024", ""},
 	{"32/01/2024", ""},
 	{"01/13/2024", ""},
@@ -89,11 +89,7 @@ var holidayTests = []struct {
 
 func TestIsHoliday(t *testing.T) {
 	for _, table := range holidayTests {
-		result, ok := date.IsHoliday(table.date, table.uf)
-		if !ok {
-			t.Errorf("Failing for %v uf=%v \t Got ok=false, expected ok=true", table.date.Format("2006-01-02"), table.uf)
-			continue
-		}
+		result := date.IsHoliday(date.IsHolidayOptions{Date: table.date, UF: table.uf})
 		if result != table.expected {
 			t.Errorf("Failing for %v uf=%v \t Expected: %v | Received: %v", table.date.Format("2006-01-02"), table.uf, table.expected, result)
 		}
@@ -101,8 +97,85 @@ func TestIsHoliday(t *testing.T) {
 }
 
 func TestIsHolidayInvalidUF(t *testing.T) {
-	_, ok := date.IsHoliday(d(2024, 1, 1), "XX")
-	if ok {
-		t.Error("Expected ok=false for invalid UF")
+	// An unrecognized UF is ignored (as if omitted), so a national holiday
+	// still reports true.
+	if !date.IsHoliday(date.IsHolidayOptions{Date: d(2024, 1, 1), UF: "XX"}) {
+		t.Error("Expected true: national holiday regardless of an unknown UF")
+	}
+}
+
+func TestIsHolidayNoOptions(t *testing.T) {
+	if date.IsHoliday() {
+		t.Error("Expected false when no options are given")
+	}
+}
+
+func TestIsBusinessDay(t *testing.T) {
+	if !date.IsBusinessDay(d(2024, 1, 2)) {
+		t.Error("Expected 2024-01-02 (Tuesday) to be a business day")
+	}
+	if date.IsBusinessDay(d(2024, 1, 1)) {
+		t.Error("Expected 2024-01-01 (New Year) to not be a business day")
+	}
+	if date.IsBusinessDay(d(2024, 1, 6)) {
+		t.Error("Expected 2024-01-06 (Saturday) to not be a business day")
+	}
+	// Carnival Monday 2024-02-12 is optional: business day when excluded.
+	no := false
+	if !date.IsBusinessDay(d(2024, 2, 12), date.BusinessDayOptions{IncludeOptionalHolidays: &no}) {
+		t.Error("Expected Carnival Monday to be a business day when optional holidays are excluded")
+	}
+}
+
+func TestAddBusinessDays(t *testing.T) {
+	// 2024-01-01 is a holiday; adding 1 business day should land on 01-02.
+	result := date.AddBusinessDays(d(2024, 1, 1), 1)
+	if result == nil || !result.Equal(d(2024, 1, 2)) {
+		t.Errorf("Expected 2024-01-02, got %v", result)
+	}
+
+	zero := date.AddBusinessDays(d(2024, 1, 6), 0)
+	if zero == nil || !zero.Equal(d(2024, 1, 6)) {
+		t.Errorf("Expected amount=0 to return the same date, got %v", zero)
+	}
+}
+
+func TestSubBusinessDays(t *testing.T) {
+	result := date.SubBusinessDays(d(2024, 1, 2), 1)
+	if result == nil || !result.Equal(d(2023, 12, 29)) {
+		t.Errorf("Expected 2023-12-29, got %v", result)
+	}
+}
+
+func TestDifferenceInBusinessDays(t *testing.T) {
+	diff := date.DifferenceInBusinessDays(d(2024, 1, 8), d(2024, 1, 1))
+	if diff == nil {
+		t.Fatal("Expected non-nil difference")
+	}
+	// Business days from 2024-01-01 (holiday) to 2024-01-08 exclusive:
+	// 01-02, 01-03, 01-04, 01-05 = 4
+	if *diff != 4 {
+		t.Errorf("Expected 4, got %v", *diff)
+	}
+
+	same := date.DifferenceInBusinessDays(d(2024, 1, 1), d(2024, 1, 1))
+	if same == nil || *same != 0 {
+		t.Errorf("Expected 0 for the same date, got %v", same)
+	}
+}
+
+func TestGetHolidays(t *testing.T) {
+	holidays := date.GetHolidays(2024)
+	if len(holidays) == 0 {
+		t.Fatal("Expected a non-empty holiday list for 2024")
+	}
+	for i := 1; i < len(holidays); i++ {
+		if holidays[i].Date.Before(holidays[i-1].Date) {
+			t.Errorf("Expected holidays sorted by date, got %v before %v", holidays[i].Date, holidays[i-1].Date)
+		}
+	}
+
+	if len(date.GetHolidays(1899)) != 0 {
+		t.Error("Expected empty list for a year before 1900")
 	}
 }

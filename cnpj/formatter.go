@@ -3,6 +3,7 @@ package cnpj
 import (
 	"bytes"
 	"fmt"
+	"strings"
 
 	"github.com/brazilian-utils/go/helpers"
 )
@@ -40,4 +41,21 @@ func format(normalized string) string {
 	}
 
 	return buf.String()
+}
+
+// RemoveSymbols removes the CNPJ formatting symbols ('.', '-', '/'),
+// keeping everything else (letters, spaces, ...) unchanged.
+func RemoveSymbols(value string) string {
+	r := strings.NewReplacer(".", "", "-", "", "/", "")
+	return r.Replace(value)
+}
+
+// Parse removes CNPJ formatting and returns the normalized value (digits
+// only), capped to 14 characters.
+func Parse(value string) string {
+	digits := helpers.OnlyNumbers(value)
+	if len(digits) > cnpjSize {
+		digits = digits[:cnpjSize]
+	}
+	return digits
 }

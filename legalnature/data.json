@@ -1,0 +1,911 @@
+{
+  "source": [
+    "https://concla.ibge.gov.br/images/concla/documentacao/CONCLA-TNJ2021-NotasExplicativas.pdf (CONCLA Tabela de Natureza Jurídica 2021, Notas Explicativas - primary source for the 92 in-force codes)",
+    "https://www.gov.br/empresas-e-negocios/pt-br/drei/links-e-downloads/arquivos/TABELADENATUREZAJURDICA.pdf (DREI reference table, used to identify legacy/retired codes)",
+    "https://concla.ibge.gov.br/documentacao/cronologia/natureza-juridica.html (CONCLA revision history)"
+  ],
+  "fetchedAt": "2026-09-26",
+  "coverage": "full for the 92 in-force codes; partial for retired/legacy codes",
+  "note": "The 92-code \"data\" array is the complete CONCLA Natureza Jurídica 2021 table in force, extracted from the reference test contract (cases/legalNature.json), which already held it as the expected output of legalNature.list, and spot-checked against the CONCLA TNJ 2021 Notas Explicativas PDF. CONCLA documentation states 8 codes were retired by past revisions; only 6 could be positively identified and cross-checked within reasonable research effort (see \"retired\" array) - this sub-list should be treated as partial/best-effort, not exhaustive.",
+  "count": 92,
+  "data": [
+    {
+      "code": "1015",
+      "description": "Órgão Público do Poder Executivo Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1023",
+      "description": "Órgão Público do Poder Executivo Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1031",
+      "description": "Órgão Público do Poder Executivo Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1040",
+      "description": "Órgão Público do Poder Legislativo Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1058",
+      "description": "Órgão Público do Poder Legislativo Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1066",
+      "description": "Órgão Público do Poder Legislativo Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1074",
+      "description": "Órgão Público do Poder Judiciário Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1082",
+      "description": "Órgão Público do Poder Judiciário Estadual",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1104",
+      "description": "Autarquia Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1112",
+      "description": "Autarquia Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1120",
+      "description": "Autarquia Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1139",
+      "description": "Fundação Pública de Direito Público Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1147",
+      "description": "Fundação Pública de Direito Público Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1155",
+      "description": "Fundação Pública de Direito Público Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1163",
+      "description": "Órgão Público Autônomo Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1171",
+      "description": "Órgão Público Autônomo Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1180",
+      "description": "Órgão Público Autônomo Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1198",
+      "description": "Comissão Polinacional",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1210",
+      "description": "Consórcio Público de Direito Público (Associação Pública)",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1228",
+      "description": "Consórcio Público de Direito Privado",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1236",
+      "description": "Estado ou Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1244",
+      "description": "Município",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1252",
+      "description": "Fundação Pública de Direito Privado Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1260",
+      "description": "Fundação Pública de Direito Privado Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1279",
+      "description": "Fundação Pública de Direito Privado Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1287",
+      "description": "Fundo Público da Administração Indireta Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1295",
+      "description": "Fundo Público da Administração Indireta Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1309",
+      "description": "Fundo Público da Administração Indireta Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1317",
+      "description": "Fundo Público da Administração Direta Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1325",
+      "description": "Fundo Público da Administração Direta Estadual ou do Distrito Federal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1333",
+      "description": "Fundo Público da Administração Direta Municipal",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "1341",
+      "description": "União",
+      "category": {
+        "code": "1",
+        "description": "Administração Pública"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2011",
+      "description": "Empresa Pública",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2038",
+      "description": "Sociedade de Economia Mista",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2046",
+      "description": "Sociedade Anônima Aberta",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2054",
+      "description": "Sociedade Anônima Fechada",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2062",
+      "description": "Sociedade Empresária Limitada",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2070",
+      "description": "Sociedade Empresária em Nome Coletivo",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2089",
+      "description": "Sociedade Empresária em Comandita Simples",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2097",
+      "description": "Sociedade Empresária em Comandita por Ações",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2127",
+      "description": "Sociedade em Conta de Participação",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2135",
+      "description": "Empresário (Individual)",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2143",
+      "description": "Cooperativa",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2151",
+      "description": "Consórcio de Sociedades",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2160",
+      "description": "Grupo de Sociedades",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2178",
+      "description": "Estabelecimento, no Brasil, de Sociedade Estrangeira",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2194",
+      "description": "Estabelecimento, no Brasil, de Empresa Binacional Argentino-Brasileira",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2216",
+      "description": "Empresa Domiciliada no Exterior",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2224",
+      "description": "Clube/Fundo de Investimento",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2232",
+      "description": "Sociedade Simples Pura",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2240",
+      "description": "Sociedade Simples Limitada",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2259",
+      "description": "Sociedade Simples em Nome Coletivo",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2267",
+      "description": "Sociedade Simples em Comandita Simples",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2275",
+      "description": "Empresa Binacional",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2283",
+      "description": "Consórcio de Empregadores",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2291",
+      "description": "Consórcio Simples",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2305",
+      "description": "Empresa Individual de Responsabilidade Limitada (de Natureza Empresária)",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2313",
+      "description": "Empresa Individual de Responsabilidade Limitada (de Natureza Simples)",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2321",
+      "description": "Sociedade Unipessoal de Advogados",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2330",
+      "description": "Cooperativas de Consumo",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2348",
+      "description": "Empresa Simples de Inovação - Inova Simples",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "2356",
+      "description": "Investidor Não Residente",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3034",
+      "description": "Serviço Notarial e Registral (Cartório)",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3069",
+      "description": "Fundação Privada",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3077",
+      "description": "Serviço Social Autônomo",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3085",
+      "description": "Condomínio Edilício",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3107",
+      "description": "Comissão de Conciliação Prévia",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3115",
+      "description": "Entidade de Mediação e Arbitragem",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3131",
+      "description": "Entidade Sindical",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3204",
+      "description": "Estabelecimento, no Brasil, de Fundação ou Associação Estrangeiras",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3212",
+      "description": "Fundação ou Associação Domiciliada no Exterior",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3220",
+      "description": "Organização Religiosa",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3239",
+      "description": "Comunidade Indígena",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3247",
+      "description": "Fundo Privado",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3255",
+      "description": "Órgão de Direção Nacional de Partido Político",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3263",
+      "description": "Órgão de Direção Regional de Partido Político",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3271",
+      "description": "Órgão de Direção Local de Partido Político",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3280",
+      "description": "Comitê Financeiro de Partido Político",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3298",
+      "description": "Frente Plebiscitária ou Referendária",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3301",
+      "description": "Organização Social (OS)",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3310",
+      "description": "Demais Condomínios",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3328",
+      "description": "Plano de Benefícios de Previdência Complementar Fechada",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "3999",
+      "description": "Associação Privada",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": false
+    },
+    {
+      "code": "4014",
+      "description": "Empresa Individual Imobiliária",
+      "category": {
+        "code": "4",
+        "description": "Pessoas Físicas"
+      },
+      "legacy": false
+    },
+    {
+      "code": "4022",
+      "description": "Segurado Especial",
+      "category": {
+        "code": "4",
+        "description": "Pessoas Físicas"
+      },
+      "legacy": false
+    },
+    {
+      "code": "4081",
+      "description": "Contribuinte individual",
+      "category": {
+        "code": "4",
+        "description": "Pessoas Físicas"
+      },
+      "legacy": false
+    },
+    {
+      "code": "4090",
+      "description": "Candidato a Cargo Político Eletivo",
+      "category": {
+        "code": "4",
+        "description": "Pessoas Físicas"
+      },
+      "legacy": false
+    },
+    {
+      "code": "4111",
+      "description": "Leiloeiro",
+      "category": {
+        "code": "4",
+        "description": "Pessoas Físicas"
+      },
+      "legacy": false
+    },
+    {
+      "code": "4120",
+      "description": "Produtor Rural (Pessoa Física)",
+      "category": {
+        "code": "4",
+        "description": "Pessoas Físicas"
+      },
+      "legacy": false
+    },
+    {
+      "code": "5010",
+      "description": "Organização Internacional",
+      "category": {
+        "code": "5",
+        "description": "Organizações Internacionais e Outras Instituições Extraterritoriais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "5029",
+      "description": "Representação Diplomática Estrangeira",
+      "category": {
+        "code": "5",
+        "description": "Organizações Internacionais e Outras Instituições Extraterritoriais"
+      },
+      "legacy": false
+    },
+    {
+      "code": "5037",
+      "description": "Outras Instituições Extraterritoriais",
+      "category": {
+        "code": "5",
+        "description": "Organizações Internacionais e Outras Instituições Extraterritoriais"
+      },
+      "legacy": false
+    }
+  ],
+  "retiredCount": 6,
+  "retiredCoverage": "partial",
+  "retired": [
+    {
+      "code": "2208",
+      "description": "Entidade Binacional Itaipu",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": true,
+      "currentCode": "2275",
+      "note": "Retired; folded into 2275 Empresa Binacional (which now also covers Alcântara Cyclone Space), per CONCLA TNJ 2021 Notas Explicativas §227-5."
+    },
+    {
+      "code": "2100",
+      "description": "Sociedade Mercantil de Capital e Indústria",
+      "category": {
+        "code": "2",
+        "description": "Entidades Empresariais"
+      },
+      "legacy": true,
+      "currentCode": null,
+      "note": "Extinct under the 2002 Civil Code (Lei 10.406/2002); no successor code in the current table."
+    },
+    {
+      "code": "3042",
+      "description": "Organização Social",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": true,
+      "currentCode": "3301",
+      "note": "Retired; superseded by 3301 Organização Social (OS)."
+    },
+    {
+      "code": "3050",
+      "description": "Organização da Sociedade Civil de Interesse Público (Oscip)",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": true,
+      "currentCode": null,
+      "note": "Retired as a standalone code; an Oscip is now classified under 3069 Fundação Privada or 3999 Associação Privada depending on its legal form (no single successor code), per CONCLA TNJ 2021 Notas Explicativas."
+    },
+    {
+      "code": "3093",
+      "description": "Unidade Executora (Programa Dinheiro Direto na Escola)",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": true,
+      "currentCode": "3999",
+      "note": "Retired as a standalone code; now classified under 3999 Associação Privada when constituted as an association, per CONCLA TNJ 2021 Notas Explicativas §399-9."
+    },
+    {
+      "code": "3123",
+      "description": "Partido Político",
+      "category": {
+        "code": "3",
+        "description": "Entidades sem Fins Lucrativos"
+      },
+      "legacy": true,
+      "currentCode": null,
+      "note": "Retired; split into 3255 (direção nacional), 3263 (direção regional), 3271 (direção local) and 3280 (comitê financeiro) - no single successor code."
+    }
+  ]
+}

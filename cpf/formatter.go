@@ -3,6 +3,7 @@ package cpf
 import (
 	"bytes"
 	"fmt"
+	"strings"
 
 	"github.com/brazilian-utils/go/helpers"
 )
@@ -35,4 +36,20 @@ func format(nomalizedCpf string) string {
 	}
 
 	return buf.String()
+}
+
+// RemoveSymbols removes the CPF formatting symbols ('.', '-'), keeping
+// everything else unchanged.
+func RemoveSymbols(value string) string {
+	r := strings.NewReplacer(".", "", "-", "")
+	return r.Replace(value)
+}
+
+// Parse removes CPF formatting and keeps only digits, capped to 11 digits.
+func Parse(value string) string {
+	digits := helpers.OnlyNumbers(value)
+	if len(digits) > cpfSize {
+		digits = digits[:cpfSize]
+	}
+	return digits
 }

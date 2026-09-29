@@ -1,0 +1,228 @@
+{
+  "source": [
+    "https://servicodados.ibge.gov.br/api/v1/localidades/estados",
+    "https://raw.githubusercontent.com/eggert/tz/main/zone1970.tab (IANA tz database, for the timezone field, zone of the state capital)"
+  ],
+  "fetchedAt": "2026-09-26",
+  "coverage": "full",
+  "note": "All 27 Brazilian federative units (26 states + Distrito Federal). Code/name/region/IBGE code from IBGE Localidades API; timezone is the IANA tzdata zone of the state capital (not returned by the IBGE API), cross-checked against zone1970.tab from the IANA tz database.",
+  "count": 27,
+  "data": [
+    {
+      "code": "AC",
+      "name": "Acre",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "ibgeCode": 12,
+      "timezone": "America/Rio_Branco"
+    },
+    {
+      "code": "AL",
+      "name": "Alagoas",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 27,
+      "timezone": "America/Maceio"
+    },
+    {
+      "code": "AP",
+      "name": "Amapá",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "ibgeCode": 16,
+      "timezone": "America/Belem"
+    },
+    {
+      "code": "AM",
+      "name": "Amazonas",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "ibgeCode": 13,
+      "timezone": "America/Manaus"
+    },
+    {
+      "code": "BA",
+      "name": "Bahia",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 29,
+      "timezone": "America/Bahia"
+    },
+    {
+      "code": "CE",
+      "name": "Ceará",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 23,
+      "timezone": "America/Fortaleza"
+    },
+    {
+      "code": "DF",
+      "name": "Distrito Federal",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "ibgeCode": 53,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "ES",
+      "name": "Espírito Santo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "ibgeCode": 32,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "GO",
+      "name": "Goiás",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "ibgeCode": 52,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "MA",
+      "name": "Maranhão",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 21,
+      "timezone": "America/Fortaleza"
+    },
+    {
+      "code": "MT",
+      "name": "Mato Grosso",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "ibgeCode": 51,
+      "timezone": "America/Cuiaba"
+    },
+    {
+      "code": "MS",
+      "name": "Mato Grosso do Sul",
+      "regionCode": "CO",
+      "regionName": "Centro-Oeste",
+      "ibgeCode": 50,
+      "timezone": "America/Campo_Grande"
+    },
+    {
+      "code": "MG",
+      "name": "Minas Gerais",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "ibgeCode": 31,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "PA",
+      "name": "Pará",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "ibgeCode": 15,
+      "timezone": "America/Belem"
+    },
+    {
+      "code": "PB",
+      "name": "Paraíba",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 25,
+      "timezone": "America/Fortaleza"
+    },
+    {
+      "code": "PR",
+      "name": "Paraná",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "ibgeCode": 41,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "PE",
+      "name": "Pernambuco",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 26,
+      "timezone": "America/Recife"
+    },
+    {
+      "code": "PI",
+      "name": "Piauí",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 22,
+      "timezone": "America/Fortaleza"
+    },
+    {
+      "code": "RJ",
+      "name": "Rio de Janeiro",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "ibgeCode": 33,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "RN",
+      "name": "Rio Grande do Norte",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 24,
+      "timezone": "America/Fortaleza"
+    },
+    {
+      "code": "RS",
+      "name": "Rio Grande do Sul",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "ibgeCode": 43,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "RO",
+      "name": "Rondônia",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "ibgeCode": 11,
+      "timezone": "America/Porto_Velho"
+    },
+    {
+      "code": "RR",
+      "name": "Roraima",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "ibgeCode": 14,
+      "timezone": "America/Boa_Vista"
+    },
+    {
+      "code": "SC",
+      "name": "Santa Catarina",
+      "regionCode": "S",
+      "regionName": "Sul",
+      "ibgeCode": 42,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "SP",
+      "name": "São Paulo",
+      "regionCode": "SE",
+      "regionName": "Sudeste",
+      "ibgeCode": 35,
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "code": "SE",
+      "name": "Sergipe",
+      "regionCode": "NE",
+      "regionName": "Nordeste",
+      "ibgeCode": 28,
+      "timezone": "America/Maceio"
+    },
+    {
+      "code": "TO",
+      "name": "Tocantins",
+      "regionCode": "N",
+      "regionName": "Norte",
+      "ibgeCode": 17,
+      "timezone": "America/Araguaina"
+    }
+  ]
+}

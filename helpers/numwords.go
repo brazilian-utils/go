@@ -107,8 +107,10 @@ func NumberToPortuguese(n int64) string {
 		return groups[0].text
 	}
 
-	// Join all groups: use ", " between groups, except the last
-	// connector uses " e " when the last group is < 100 or a round hundred.
+	// Join all groups with a plain space; the last connector becomes " e "
+	// when the last group's value is < 100 or a round hundred (classic
+	// Portuguese numeral rule), otherwise groups are just space-joined
+	// (no commas: matches the shared brazilian-utils contract).
 	lastIdx := len(groups) - 1
 	lastValue := groups[lastIdx].value
 	useE := lastValue < 100 || lastValue%100 == 0
@@ -116,7 +118,7 @@ func NumberToPortuguese(n int64) string {
 	var sb strings.Builder
 	for i := 0; i < lastIdx; i++ {
 		if i > 0 {
-			sb.WriteString(", ")
+			sb.WriteString(" ")
 		}
 		sb.WriteString(groups[i].text)
 	}
@@ -124,7 +126,7 @@ func NumberToPortuguese(n int64) string {
 	if useE {
 		sb.WriteString(" e ")
 	} else {
-		sb.WriteString(", ")
+		sb.WriteString(" ")
 	}
 	sb.WriteString(groups[lastIdx].text)
 

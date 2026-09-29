@@ -26,3 +26,41 @@ func TestFormat(t *testing.T) {
 		}
 	}
 }
+
+var removeSymbolsTests = []struct {
+	input    string
+	expected string
+}{
+	{"10799163989271", "10799163989271"},
+	{"10.799.163/9892-71", "10799163989271"},
+	{"", ""},
+	{"   ", "   "},
+	{"abc", "abc"},
+}
+
+func TestRemoveSymbols(t *testing.T) {
+	for _, table := range removeSymbolsTests {
+		if res := cnpj.RemoveSymbols(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}
+
+var parseTests = []struct {
+	input    string
+	expected string
+}{
+	{"46.843.485/0001-86", "46843485000186"},
+	{"46843485000186", "46843485000186"},
+	{"46.?ABC843.485/0001-86abc", "46843485000186"},
+	{"", ""},
+	{"46843485000186123", "46843485000186"},
+}
+
+func TestParse(t *testing.T) {
+	for _, table := range parseTests {
+		if res := cnpj.Parse(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}

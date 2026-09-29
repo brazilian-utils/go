@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/brazilian-utils/go/helpers"
 )
 
 const processSize = 20
@@ -58,10 +60,33 @@ func Format(legalProcessID string) string {
 	)
 }
 
-// Generate generates a random valid legal process ID.
-// year must not be in the past; orgao must be 1-9.
-// Returns empty string if arguments are invalid.
-func Generate(year int, orgao int) string {
+// GenerateOptions controls Generate.
+type GenerateOptions struct {
+	// Year sets the AAAA field (default: the current year). Must not be
+	// in the past.
+	Year int
+	// Court sets the segment J, 1 to 9 (default: random).
+	Court int
+}
+
+// Generate generates a random valid legal process ID (20 digits,
+// unformatted). Returns "" when the year or the segment is out of range.
+func Generate(opts ...GenerateOptions) string {
+	var o GenerateOptions
+	if len(opts) > 0 {
+		o = opts[0]
+	}
+
+	year := o.Year
+	if year == 0 {
+		year = time.Now().Year()
+	}
+
+	orgao := o.Court
+	if orgao == 0 {
+		orgao = randIntn(9) + 1
+	}
+
 	if year < time.Now().Year() || orgao < 1 || orgao > 9 {
 		return ""
 	}
@@ -79,6 +104,22 @@ func Generate(year int, orgao int) string {
 	dd := checksum(base)
 
 	return fmt.Sprintf("%s%s%04d%d%02d%04d", nnnnnnn, dd, year, orgao, tr, oooo)
+}
+
+// RemoveSymbols removes the legal process formatting symbols ('.', '-'),
+// keeping everything else unchanged.
+func RemoveSymbols(value string) string {
+	return removeSymbols(value)
+}
+
+// Parse removes legal process formatting and keeps only digits, capped to
+// 20 digits.
+func Parse(value string) string {
+	digits := helpers.OnlyNumbers(value)
+	if len(digits) > processSize {
+		digits = digits[:processSize]
+	}
+	return digits
 }
 
 // checksum computes the 2-digit verification code.

@@ -29,3 +29,15 @@ func TestValidate(t *testing.T) {
 		}
 	}
 }
+
+func TestGenerate(t *testing.T) {
+	for i := 0; i < 50; i++ {
+		generated := renavam.Generate()
+		if len(generated) != 11 {
+			t.Fatalf("Expected 11 digits, got %d: %v", len(generated), generated)
+		}
+		if !renavam.IsValid(generated) {
+			t.Fatalf("Generated invalid RENAVAM on iteration %d: %v", i, generated)
+		}
+	}
+}

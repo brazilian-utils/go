@@ -1,94 +1,35 @@
 package legalnature
 
-import "github.com/brazilian-utils/go/helpers"
+import (
+	"bytes"
+	"fmt"
+	"math/rand"
+	"strconv"
+	"strings"
 
-// legalNatureTable maps official 4-digit codes to their descriptions,
-// sourced from the Tabela de Natureza Jurídica (RFB).
-var legalNatureTable = map[string]string{
-	// 1. ADMINISTRAÇÃO PÚBLICA
-	"1015": "Órgão Público do Poder Executivo Federal",
-	"1023": "Órgão Público do Poder Executivo Estadual ou do Distrito Federal",
-	"1031": "Órgão Público do Poder Executivo Municipal",
-	"1040": "Órgão Público do Poder Legislativo Federal",
-	"1058": "Órgão Público do Poder Legislativo Estadual ou do Distrito Federal",
-	"1066": "Órgão Público do Poder Legislativo Municipal",
-	"1074": "Órgão Público do Poder Judiciário Federal",
-	"1082": "Órgão Público do Poder Judiciário Estadual",
-	"1104": "Autarquia Federal",
-	"1112": "Autarquia Estadual ou do Distrito Federal",
-	"1120": "Autarquia Municipal",
-	"1139": "Fundação Federal",
-	"1147": "Fundação Estadual ou do Distrito Federal",
-	"1155": "Fundação Municipal",
-	"1163": "Órgão Público Autônomo da União",
-	"1171": "Órgão Público Autônomo Estadual ou do Distrito Federal",
-	"1180": "Órgão Público Autônomo Municipal",
-	// 2. ENTIDADES EMPRESARIAIS
-	"2011": "Empresa Pública",
-	"2038": "Sociedade de Economia Mista",
-	"2046": "Sociedade Anônima Aberta",
-	"2054": "Sociedade Anônima Fechada",
-	"2062": "Sociedade Empresária Limitada",
-	"2076": "Sociedade Empresária em Nome Coletivo",
-	"2089": "Sociedade Empresária em Comandita Simples",
-	"2097": "Sociedade Empresária em Comandita por Ações",
-	"2100": "Sociedade Mercantil de Capital e Indústria (extinta pelo NCC/2002)",
-	"2127": "Sociedade Empresária em Conta de Participação",
-	"2135": "Empresário (Individual)",
-	"2143": "Cooperativa",
-	"2151": "Consórcio de Sociedades",
-	"2160": "Grupo de Sociedades",
-	"2178": "Estabelecimento, no Brasil, de Sociedade Estrangeira",
-	"2194": "Estabelecimento, no Brasil, de Empresa Binacional Argentino-Brasileira",
-	"2208": "Entidade Binacional Itaipu",
-	"2216": "Empresa Domiciliada no Exterior",
-	"2224": "Clube/Fundo de Investimento",
-	"2232": "Sociedade Simples Pura",
-	"2240": "Sociedade Simples Limitada",
-	"2259": "Sociedade em Nome Coletivo",
-	"2267": "Sociedade em Comandita Simples",
-	"2275": "Sociedade Simples em Conta de Participação",
-	"2305": "Empresa Individual de Responsabilidade Limitada",
-	// 3. ENTIDADES SEM FINS LUCRATIVOS
-	"3034": "Serviço Notarial e Registral (Cartório)",
-	"3042": "Organização Social",
-	"3050": "Organização da Sociedade Civil de Interesse Público (Oscip)",
-	"3069": "Outras Formas de Fundações Mantidas com Recursos Privados",
-	"3077": "Serviço Social Autônomo",
-	"3085": "Condomínio Edilícios",
-	"3093": "Unidade Executora (Programa Dinheiro Direto na Escola)",
-	"3107": "Comissão de Conciliação Prévia",
-	"3115": "Entidade de Mediação e Arbitragem",
-	"3123": "Partido Político",
-	"3131": "Entidade Sindical",
-	"3204": "Estabelecimento, no Brasil, de Fundação ou Associação Estrangeiras",
-	"3212": "Fundação ou Associação Domiciliada no Exterior",
-	"3999": "Associação Privada",
-	// 4. PESSOAS FÍSICAS
-	"4014": "Empresa Individual Imobiliária",
-	"4022": "Segurado Especial",
-	"4081": "Contribuinte individual",
-	// 5. ORGANIZAÇÕES INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS
-	"5002": "Organização Internacional e Outras Instituições Extraterritoriais",
-}
+	"github.com/brazilian-utils/go/helpers"
+)
+
+const codeSize = 4
 
 // normalize strips non-digit characters and validates the code is 4 digits.
 func normalize(code string) string {
 	digits := helpers.OnlyNumbers(code)
-	if len(digits) != 4 {
+	if len(digits) != codeSize {
 		return ""
 	}
 	return digits
 }
 
 // IsValid checks if a string corresponds to a valid Natureza Jurídica code.
-// Accepts formats "NNNN" or "NNN-N".
+// Accepts formats "NNNN" or "NNN-N". The 92 codes in force are accepted,
+// plus the retired codes this dataset knows about.
 func IsValid(code string) bool {
 	normalized := normalize(code)
 	if normalized == "" {
 		return false
 	}
-	_, ok := legalNatureTable[normalized]
+	_, ok := byCode[normalized]
 	return ok
 }
 
@@ -99,14 +40,140 @@ func GetDescription(code string) string {
 	if normalized == "" {
 		return ""
 	}
-	return legalNatureTable[normalized]
+	return byCode[normalized].Description
 }
 
-// ListAll returns a copy of the full Natureza Jurídica table.
+// ListAll returns a copy of the in-force Natureza Jurídica table
+// (code -> description).
+//
+// Deprecated: kept for backward compatibility; prefer List.
 func ListAll() map[string]string {
-	result := make(map[string]string, len(legalNatureTable))
-	for k, v := range legalNatureTable {
-		result[k] = v
+	return List()
+}
+
+// ListOptions controls List.
+type ListOptions struct {
+	// IncludeRetired also includes the retired codes this dataset knows
+	// about (best-effort, not necessarily exhaustive).
+	IncludeRetired bool
+}
+
+// List returns the legal nature table as a map from code to description.
+// Only the 92 codes in force by default; opts[0].IncludeRetired also
+// includes the retired ones.
+func List(opts ...ListOptions) map[string]string {
+	includeRetired := len(opts) > 0 && opts[0].IncludeRetired
+
+	result := make(map[string]string, len(inForce)+len(retired))
+	for _, ln := range inForce {
+		result[ln.Code] = ln.Description
+	}
+	if includeRetired {
+		for _, ln := range retired {
+			result[ln.Code] = ln.Description
+		}
 	}
 	return result
+}
+
+// Get looks a legal nature code up; returns nil for an unknown code.
+func Get(value string) *LegalNature {
+	normalized := normalize(value)
+	if normalized == "" {
+		return nil
+	}
+	ln, ok := byCode[normalized]
+	if !ok {
+		return nil
+	}
+	copied := ln
+	return &copied
+}
+
+// ListByCategoryOptions controls ListByCategory.
+type ListByCategoryOptions struct {
+	// IncludeRetired also includes the retired codes of the category.
+	IncludeRetired bool
+}
+
+// ListByCategory returns every legal nature of a CONCLA category (the
+// first digit of the code), sorted by code. category may be a numeric
+// string or the digit itself; a full code (e.g. "2062") is not a category
+// and returns an empty list.
+func ListByCategory(category string, opts ...ListByCategoryOptions) []LegalNature {
+	includeRetired := len(opts) > 0 && opts[0].IncludeRetired
+
+	category = strings.TrimSpace(category)
+	if len(category) != 1 || category[0] < '0' || category[0] > '9' {
+		return []LegalNature{}
+	}
+
+	result := make([]LegalNature, 0)
+	for _, ln := range inForce {
+		if len(ln.Code) > 0 && string(ln.Code[0]) == category {
+			result = append(result, ln)
+		}
+	}
+	if includeRetired {
+		for _, ln := range retired {
+			if len(ln.Code) > 0 && string(ln.Code[0]) == category {
+				result = append(result, ln)
+			}
+		}
+	}
+	return result
+}
+
+// ListByCategoryNumber is a convenience overload of ListByCategory for a
+// numeric category (as the contract's "string | number" parameter allows).
+func ListByCategoryNumber(category int, opts ...ListByCategoryOptions) []LegalNature {
+	return ListByCategory(strconv.Itoa(category), opts...)
+}
+
+// FormatOptions controls Format.
+type FormatOptions struct {
+	// Pad left-pads the value with zeros to 4 digits first.
+	Pad bool
+}
+
+// Format formats a legal nature code as "NNN-N", masking as far as the
+// digits go.
+func Format(value string, opts ...FormatOptions) string {
+	digits := helpers.OnlyNumbers(value)
+	if len(opts) > 0 && opts[0].Pad && digits != "" {
+		if len(digits) < codeSize {
+			digits = strings.Repeat("0", codeSize-len(digits)) + digits
+		}
+	}
+	if len(digits) > codeSize {
+		digits = digits[:codeSize]
+	}
+	if digits == "" {
+		return ""
+	}
+
+	buf := bytes.Buffer{}
+	for i, c := range digits {
+		if i == 3 {
+			buf.WriteString("-")
+		}
+		buf.WriteString(fmt.Sprintf("%c", c))
+	}
+	return buf.String()
+}
+
+// Parse removes legal nature formatting and keeps only digits, capped to
+// 4 digits.
+func Parse(value string) string {
+	digits := helpers.OnlyNumbers(value)
+	if len(digits) > codeSize {
+		digits = digits[:codeSize]
+	}
+	return digits
+}
+
+// Generate generates a random valid legal nature code, drawn only among
+// the codes in force.
+func Generate() string {
+	return inForce[rand.Intn(len(inForce))].Code
 }

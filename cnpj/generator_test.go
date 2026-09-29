@@ -7,7 +7,7 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
-	generated := cnpj.Generate(1)
+	generated := cnpj.Generate()
 	if len(generated) != 14 {
 		t.Errorf("Expected generated CNPJ to have 14 characters, got %d", len(generated))
 	}
@@ -17,7 +17,7 @@ func TestGenerate(t *testing.T) {
 }
 
 func TestGenerateWithBranch(t *testing.T) {
-	generated := cnpj.Generate(1234)
+	generated := cnpj.Generate(cnpj.GenerateOptions{Branch: 1234})
 	if len(generated) != 14 {
 		t.Errorf("Expected generated CNPJ to have 14 characters, got %d", len(generated))
 	}
@@ -32,13 +32,20 @@ func TestGenerateWithBranch(t *testing.T) {
 }
 
 func TestGenerateWithZeroBranch(t *testing.T) {
-	generated := cnpj.Generate(0)
+	generated := cnpj.Generate(cnpj.GenerateOptions{Branch: 0})
 	if !cnpj.IsValid(generated) {
 		t.Errorf("Expected generated CNPJ to be valid, got %v", generated)
 	}
-	// Branch 0 should default to 1 → "0001"
-	branch := generated[8:12]
-	if branch != "0001" {
-		t.Errorf("Expected branch 0001 for input 0, got %v", branch)
+}
+
+func TestGenerateAlphanumeric(t *testing.T) {
+	for i := 0; i < 10; i++ {
+		generated := cnpj.Generate(cnpj.GenerateOptions{Version: 2})
+		if len(generated) != 14 {
+			t.Errorf("Expected generated CNPJ to have 14 characters, got %d", len(generated))
+		}
+		if !cnpj.IsValid(generated, cnpj.IsValidOptions{Version: 2}) {
+			t.Errorf("Expected generated alphanumeric CNPJ to be valid, got %v", generated)
+		}
 	}
 }

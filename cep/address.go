@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/brazilian-utils/go/helpers"
 )
@@ -95,11 +96,27 @@ func GetAddressFromCEP(cep string) (*Address, error) {
 	return &addr, nil
 }
 
-// GetCEPFromAddress fetches CEP options for a given address using the ViaCEP API.
-// federalUnit must be a valid 2-letter Brazilian state abbreviation (e.g. "SP", "RJ").
-func GetCEPFromAddress(federalUnit, city, street string) ([]Address, error) {
+// GetCEPFromAddressParams carries the state (federative unit), city and
+// street to look up.
+type GetCEPFromAddressParams struct {
+	// UF is the 2-letter Brazilian state abbreviation (e.g. "SP", "RJ"),
+	// case-insensitive.
+	UF string
+	// City is the city name.
+	City string
+	// Street is the street name.
+	Street string
+}
+
+// GetCEPFromAddress fetches CEP options for a given address using the
+// ViaCEP API.
+func GetCEPFromAddress(params GetCEPFromAddressParams) ([]Address, error) {
+	federalUnit := strings.ToUpper(strings.TrimSpace(params.UF))
+	city := strings.TrimSpace(params.City)
+	street := strings.TrimSpace(params.Street)
+
 	if !helpers.Contains(validUFs, federalUnit) {
-		return nil, fmt.Errorf("invalid UF: %s", federalUnit)
+		return nil, fmt.Errorf("invalid UF: %s", params.UF)
 	}
 
 	if city == "" {

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"math/rand"
+	"strings"
 
 	"github.com/brazilian-utils/go/helpers"
 )
@@ -47,4 +48,19 @@ func Generate() string {
 		buf.WriteString(fmt.Sprintf("%d", rand.Intn(10)))
 	}
 	return buf.String()
+}
+
+// RemoveSymbols removes the CEP formatting symbol ('-'), keeping
+// everything else unchanged.
+func RemoveSymbols(value string) string {
+	return strings.ReplaceAll(value, "-", "")
+}
+
+// Parse removes CEP formatting and keeps only digits, capped to 8 digits.
+func Parse(value string) string {
+	digits := helpers.OnlyNumbers(value)
+	if len(digits) > cepSize {
+		digits = digits[:cepSize]
+	}
+	return digits
 }

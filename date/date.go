@@ -2,13 +2,13 @@ package date
 
 import (
 	"regexp"
-	"strings"
 	"time"
 
 	"github.com/brazilian-utils/go/helpers"
 )
 
 var dateRegex = regexp.MustCompile(`^\d{2}/\d{2}/\d{4}$`)
+var isoDateRegex = regexp.MustCompile(`^\d{4}-\d{2}-\d{2}$`)
 
 // Month names in lowercase, per Brazilian orthographic norm (months are
 // common nouns, not proper nouns) and the LOA extenso convention (Lei
@@ -24,11 +24,17 @@ var monthNames = []string{
 // Portuguese text representation.
 // Returns empty string if the date is invalid.
 func ConvertDateToText(date string) string {
-	if !dateRegex.MatchString(date) {
+	var t time.Time
+	var err error
+
+	switch {
+	case dateRegex.MatchString(date):
+		t, err = time.Parse("02/01/2006", date)
+	case isoDateRegex.MatchString(date):
+		t, err = time.Parse("2006-01-02", date)
+	default:
 		return ""
 	}
-
-	t, err := time.Parse("02/01/2006", date)
 	if err != nil {
 		return ""
 	}
@@ -39,10 +45,9 @@ func ConvertDateToText(date string) string {
 
 	var dayStr string
 	if day == 1 {
-		dayStr = "Primeiro"
+		dayStr = "primeiro"
 	} else {
 		dayStr = helpers.NumberToPortuguese(int64(day))
-		dayStr = strings.ToUpper(dayStr[:1]) + dayStr[1:]
 	}
 
 	yearStr := helpers.NumberToPortuguese(int64(year))

@@ -15,7 +15,7 @@ var numberToPortugueseTests = []struct {
 	{14, "quatorze"},
 	{100, "cem"},
 	{1000, "mil"},
-	{1234, "mil, duzentos e trinta e quatro"},
+	{1234, "mil duzentos e trinta e quatro"},
 	{-42, "menos quarenta e dois"}, // was a panic (index out of range [-1])
 	{-1000, "menos mil"},
 }

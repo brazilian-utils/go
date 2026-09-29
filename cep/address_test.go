@@ -114,7 +114,7 @@ func TestGetCEPFromAddress_Valid(t *testing.T) {
 	baseAPIURL = server.URL
 	defer func() { baseAPIURL = oldURL }()
 
-	addresses, err := GetCEPFromAddress("SP", "São Paulo", "Praça da Sé")
+	addresses, err := GetCEPFromAddress(GetCEPFromAddressParams{UF: "SP", City: "São Paulo", Street: "Praça da Sé"})
 	if err != nil {
 		t.Fatalf("Expected no error, got %v", err)
 	}
@@ -127,21 +127,21 @@ func TestGetCEPFromAddress_Valid(t *testing.T) {
 }
 
 func TestGetCEPFromAddress_InvalidUF(t *testing.T) {
-	_, err := GetCEPFromAddress("XX", "São Paulo", "Praça da Sé")
+	_, err := GetCEPFromAddress(GetCEPFromAddressParams{UF: "XX", City: "São Paulo", Street: "Praça da Sé"})
 	if err == nil {
 		t.Fatal("Expected error for invalid UF, got nil")
 	}
 }
 
 func TestGetCEPFromAddress_EmptyCity(t *testing.T) {
-	_, err := GetCEPFromAddress("SP", "", "Praça da Sé")
+	_, err := GetCEPFromAddress(GetCEPFromAddressParams{UF: "SP", City: "", Street: "Praça da Sé"})
 	if err == nil {
 		t.Fatal("Expected error for empty city, got nil")
 	}
 }
 
 func TestGetCEPFromAddress_EmptyStreet(t *testing.T) {
-	_, err := GetCEPFromAddress("SP", "São Paulo", "")
+	_, err := GetCEPFromAddress(GetCEPFromAddressParams{UF: "SP", City: "São Paulo", Street: ""})
 	if err == nil {
 		t.Fatal("Expected error for empty street, got nil")
 	}
@@ -157,7 +157,7 @@ func TestGetCEPFromAddress_NotFound(t *testing.T) {
 	baseAPIURL = server.URL
 	defer func() { baseAPIURL = oldURL }()
 
-	_, err := GetCEPFromAddress("SP", "Nonexistent", "Nonexistent")
+	_, err := GetCEPFromAddress(GetCEPFromAddressParams{UF: "SP", City: "Nonexistent", Street: "Nonexistent"})
 	if err == nil {
 		t.Fatal("Expected error for empty results, got nil")
 	}

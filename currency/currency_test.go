@@ -45,27 +45,30 @@ var convertTests = []struct {
 	input    float64
 	expected string
 }{
-	// Examples from the Python docstring
-	{1523.45, "Mil, quinhentos e vinte e três reais e quarenta e cinco centavos"},
-	{1.00, "Um real"},
-	{0.50, "Cinquenta centavos"},
-	{0.00, "Zero reais"},
+	// Examples from the shared brazilian-utils contract (cases/currency.json):
+	// all lower case, no commas between groups.
+	{1523.45, "mil quinhentos e vinte e três reais e quarenta e cinco centavos"},
+	{1.00, "um real"},
+	{0.50, "cinquenta centavos"},
+	{0.00, "zero reais"},
 
 	// Additional cases
-	{0.01, "Um centavo"},
-	{2.50, "Dois reais e cinquenta centavos"},
-	{100, "Cem reais"},
-	{101, "Cento e um reais"},
-	{1000, "Mil reais"},
-	{1001, "Mil e um reais"},
-	{1200, "Mil e duzentos reais"},
-	{2000, "Dois mil reais"},
-	{1000000, "Um milhão de reais"},
-	{2000000, "Dois milhões de reais"},
-	{1000000000, "Um bilhão de reais"},
-	{1000000000000, "Um trilhão de reais"},
-	{-5.25, "Menos cinco reais e vinte e cinco centavos"},
-	{1500000, "Um milhão e quinhentos mil reais"},
+	{0.01, "um centavo"},
+	{2.50, "dois reais e cinquenta centavos"},
+	{100, "cem reais"},
+	{101, "cento e um reais"},
+	{1000, "mil reais"},
+	{1001, "mil e um reais"},
+	{1200, "mil e duzentos reais"},
+	{2000, "dois mil reais"},
+	{1000000, "um milhão de reais"},
+	{2000000, "dois milhões de reais"},
+	{1000000000, "um bilhão de reais"},
+	{1000000000000, "um trilhão de reais"},
+	{-5.25, "menos cinco reais e vinte e cinco centavos"},
+	{1500000, "um milhão e quinhentos mil reais"},
+	{1000230, "um milhão duzentos e trinta reais"},
+	{1.999, "um real e noventa e nove centavos"},
 }
 
 func TestConvertRealToText(t *testing.T) {
@@ -85,5 +88,49 @@ func TestConvertRealToTextNaN(t *testing.T) {
 func TestConvertRealToTextExceedsMax(t *testing.T) {
 	if res := currency.ConvertRealToText(1_000_000_000_000_001); res != "" {
 		t.Errorf("Expected empty string for value exceeding max, got %v", res)
+	}
+}
+
+var formatValueTests = []struct {
+	input    interface{}
+	expected string
+}{
+	{1000.01, "1.000,01"},
+	{0.01, "0,01"},
+	{1.0, "1,00"},
+	{1000000.01, "1.000.000,01"},
+	{-10.1, "-10,10"},
+	{"1234.56", "1.234,56"},
+	{"1.234,56", "1.234,56"},
+	{"R$ 1.234,56", "1.234,56"},
+}
+
+func TestFormat(t *testing.T) {
+	for _, table := range formatValueTests {
+		if res := currency.Format(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}
+
+var parseTests = []struct {
+	input    string
+	expected float64
+}{
+	{"R$ 1.234,56", 1234.56},
+	{"1234,56", 1234.56},
+	{"R$ 0,50", 0.5},
+	{"1.000.000,50", 1000000.5},
+	{"-1.234,56", -1234.56},
+	{"0,00", 0},
+	{"1234", 12.34},
+	{"", 0},
+}
+
+func TestParse(t *testing.T) {
+	for _, table := range parseTests {
+		if res := currency.Parse(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
 	}
 }

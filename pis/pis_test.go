@@ -20,6 +20,8 @@ var isValidTests = []struct {
 	{"", false},
 	{"8217853746a", false},
 	{"123.45678.90-9", false}, // formatted, not plain digits
+	{"00000000000", false},    // repeated digits, even if checksum matches
+	{"99999999999", false},
 }
 
 func TestIsValid(t *testing.T) {
@@ -43,6 +45,44 @@ var formatTests = []struct {
 func TestFormat(t *testing.T) {
 	for _, table := range formatTests {
 		if res := pis.Format(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}
+
+var removeSymbolsTests = []struct {
+	input    string
+	expected string
+}{
+	{"55984775363", "55984775363"},
+	{"559.84775.36-3", "55984775363"},
+	{"", ""},
+	{"   ", "   "},
+	{"abc", "abc"},
+}
+
+func TestRemoveSymbols(t *testing.T) {
+	for _, table := range removeSymbolsTests {
+		if res := pis.RemoveSymbols(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}
+
+var parseTests = []struct {
+	input    string
+	expected string
+}{
+	{"123.45678.90-1", "12345678901"},
+	{"12345678901", "12345678901"},
+	{"123#Error*&@#45678#Char!90-1", "12345678901"},
+	{"", ""},
+	{"12345678901123", "12345678901"},
+}
+
+func TestParse(t *testing.T) {
+	for _, table := range parseTests {
+		if res := pis.Parse(table.input); res != table.expected {
 			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
 		}
 	}

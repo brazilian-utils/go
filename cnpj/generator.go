@@ -7,23 +7,63 @@ import (
 	"strings"
 )
 
-// Generate generates a random valid CNPJ string.
-// The branch parameter specifies the branch number (1-9999); it defaults
-// to 1 if 0 is provided.
-func Generate(branch int) string {
-	branch = branch % 10000
-	if branch == 0 {
-		branch = 1
+// GenerateOptions controls Generate.
+type GenerateOptions struct {
+	// Version picks the format: 1 (default, numeric) or 2 (alphanumeric).
+	Version int
+	// Branch is the número de ordem (1-9999); random when 0 or invalid.
+	Branch int
+}
+
+// Generate generates a random valid CNPJ string. With no options, a
+// numeric (version 1) CNPJ with a random branch is returned. The branch
+// block stays numeric in both versions.
+func Generate(opts ...GenerateOptions) string {
+	var o GenerateOptions
+	if len(opts) > 0 {
+		o = opts[0]
 	}
 
+	branch := o.Branch % 10000
+	if branch <= 0 {
+		branch = rand.Intn(9999) + 1
+	}
+
+	if o.Version == 2 {
+		return generateAlphanumeric(branch)
+	}
+	return generateNumeric(branch)
+}
+
+func generateNumeric(branch int) string {
 	base := fmt.Sprintf("%08d%04d", rand.Intn(100000000), branch)
 	return base + checksum(base)
 }
 
-// checksum computes the two verifying checksum digits for a 12-digit CNPJ base.
+const alnumChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+func generateAlphanumeric(branch int) string {
+	var buf strings.Builder
+	for i := 0; i < 8; i++ {
+		buf.WriteByte(alnumChars[rand.Intn(len(alnumChars))])
+	}
+	base := fmt.Sprintf("%s%04d", buf.String(), branch)
+	return base + checksumAlnum(base)
+}
+
+// checksum computes the two verifying checksum digits for a 12-digit
+// numeric CNPJ base.
 func checksum(base string) string {
 	first := hashDigit(base, 13)
 	second := hashDigit(base+strconv.Itoa(first), 14)
+	return fmt.Sprintf("%d%d", first, second)
+}
+
+// checksumAlnum computes the two verifying checksum digits for a
+// 12-character alphanumeric CNPJ base.
+func checksumAlnum(base string) string {
+	first := computeModAlnum(base, 12)
+	second := computeModAlnum(base+strconv.Itoa(first), 13)
 	return fmt.Sprintf("%d%d", first, second)
 }
 

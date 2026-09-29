@@ -2,6 +2,7 @@ package voterid
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/brazilian-utils/go/helpers"
 )
@@ -27,4 +28,30 @@ func Format(voterID string) string {
 		voterIDNumbers[8:10],
 		voterIDNumbers[10:12],
 	)
+}
+
+// RemoveSymbols removes the voter ID formatting symbols (space, '.'),
+// keeping everything else unchanged.
+func RemoveSymbols(value string) string {
+	r := strings.NewReplacer(" ", "", ".", "")
+	return r.Replace(value)
+}
+
+// Parse removes voter ID formatting and keeps only digits, capped to 12
+// digits (13 when the UF digits, at position 10-11 of a 13-digit value,
+// are 01 - SP - or 02 - MG).
+func Parse(value string) string {
+	digits := helpers.OnlyNumbers(value)
+
+	capLen := 12
+	if len(digits) >= 13 {
+		uf := digits[9:11]
+		if uf == "01" || uf == "02" {
+			capLen = 13
+		}
+	}
+	if len(digits) > capLen {
+		digits = digits[:capLen]
+	}
+	return digits
 }

@@ -52,6 +52,44 @@ func TestFormat(t *testing.T) {
 	}
 }
 
+var removeSymbolsTests = []struct {
+	input    string
+	expected string
+}{
+	{"91906292", "91906292"},
+	{"91906-292", "91906292"},
+	{"", ""},
+	{"   ", "   "},
+	{"abc", "abc"},
+}
+
+func TestRemoveSymbols(t *testing.T) {
+	for _, table := range removeSymbolsTests {
+		if res := cep.RemoveSymbols(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}
+
+var parseTests = []struct {
+	input    string
+	expected string
+}{
+	{"01001-000", "01001000"},
+	{"01001000", "01001000"},
+	{"a0.10cr01?00#ab0", "01001000"},
+	{"", ""},
+	{"01001000123", "01001000"},
+}
+
+func TestParse(t *testing.T) {
+	for _, table := range parseTests {
+		if res := cep.Parse(table.input); res != table.expected {
+			t.Errorf("Failing for %v \t Expected: %v | Received: %v", table.input, table.expected, res)
+		}
+	}
+}
+
 func TestGenerate(t *testing.T) {
 	generated := cep.Generate()
 	if len(generated) != 8 {
